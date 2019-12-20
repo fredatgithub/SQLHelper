@@ -74,6 +74,8 @@
       this.buttonDelete = new System.Windows.Forms.Button();
       this.labelExplanation = new System.Windows.Forms.Label();
       this.labelExplanation2 = new System.Windows.Forms.Label();
+      this.labelToDeploy = new System.Windows.Forms.Label();
+      this.labelListServerAvailable = new System.Windows.Forms.Label();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -99,11 +101,11 @@
       // listBoxAvailable
       // 
       this.listBoxAvailable.FormattingEnabled = true;
-      this.listBoxAvailable.Location = new System.Drawing.Point(687, 63);
+      this.listBoxAvailable.Location = new System.Drawing.Point(687, 89);
       this.listBoxAvailable.Name = "listBoxAvailable";
       this.listBoxAvailable.ScrollAlwaysVisible = true;
       this.listBoxAvailable.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-      this.listBoxAvailable.Size = new System.Drawing.Size(159, 160);
+      this.listBoxAvailable.Size = new System.Drawing.Size(159, 134);
       this.listBoxAvailable.TabIndex = 2;
       // 
       // buttonMoveToAvailable
@@ -456,11 +458,33 @@
       this.labelExplanation2.TabIndex = 15;
       this.labelExplanation2.Text = "Replace %%ServerName%% for each server in the listbox";
       // 
+      // labelToDeploy
+      // 
+      this.labelToDeploy.AutoSize = true;
+      this.labelToDeploy.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.labelToDeploy.Location = new System.Drawing.Point(405, 36);
+      this.labelToDeploy.Name = "labelToDeploy";
+      this.labelToDeploy.Size = new System.Drawing.Size(137, 13);
+      this.labelToDeploy.TabIndex = 16;
+      this.labelToDeploy.Text = "List of servers to insert";
+      // 
+      // labelListServerAvailable
+      // 
+      this.labelListServerAvailable.AutoSize = true;
+      this.labelListServerAvailable.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.labelListServerAvailable.Location = new System.Drawing.Point(684, 63);
+      this.labelListServerAvailable.Name = "labelListServerAvailable";
+      this.labelListServerAvailable.Size = new System.Drawing.Size(142, 13);
+      this.labelListServerAvailable.TabIndex = 17;
+      this.labelListServerAvailable.Text = "List of servers available";
+      // 
       // FormMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(1186, 520);
+      this.Controls.Add(this.labelListServerAvailable);
+      this.Controls.Add(this.labelToDeploy);
       this.Controls.Add(this.labelExplanation2);
       this.Controls.Add(this.labelExplanation);
       this.Controls.Add(this.buttonDelete);
@@ -535,6 +559,8 @@
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.Label labelExplanation;
         private System.Windows.Forms.Label labelExplanation2;
+        private System.Windows.Forms.Label labelToDeploy;
+        private System.Windows.Forms.Label labelListServerAvailable;
     }
 }
 
