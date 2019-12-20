@@ -140,10 +140,13 @@
       // 
       // textBoxResult
       // 
+      this.textBoxResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
       this.textBoxResult.Location = new System.Drawing.Point(27, 292);
       this.textBoxResult.Multiline = true;
       this.textBoxResult.Name = "textBoxResult";
-      this.textBoxResult.Size = new System.Drawing.Size(353, 206);
+      this.textBoxResult.Size = new System.Drawing.Size(913, 206);
       this.textBoxResult.TabIndex = 6;
       // 
       // menuStrip1
@@ -155,7 +158,7 @@
             this.aideToolStripMenuItem});
       this.menuStrip1.Location = new System.Drawing.Point(0, 0);
       this.menuStrip1.Name = "menuStrip1";
-      this.menuStrip1.Size = new System.Drawing.Size(1186, 24);
+      this.menuStrip1.Size = new System.Drawing.Size(952, 24);
       this.menuStrip1.TabIndex = 7;
       this.menuStrip1.Text = "menuStrip1";
       // 
@@ -482,7 +485,7 @@
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(1186, 520);
+      this.ClientSize = new System.Drawing.Size(952, 520);
       this.Controls.Add(this.labelListServerAvailable);
       this.Controls.Add(this.labelToDeploy);
       this.Controls.Add(this.labelExplanation2);
@@ -504,6 +507,7 @@
       this.MainMenuStrip = this.menuStrip1;
       this.Name = "FormMain";
       this.Text = "SQL Helper";
+      this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
       this.Load += new System.EventHandler(this.FormMain_Load);
       this.menuStrip1.ResumeLayout(false);
       this.menuStrip1.PerformLayout();

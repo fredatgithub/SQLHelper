@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
+using System.Reflection;
+using SQLHelper.Properties;
 
 namespace SQLHelper
 {
@@ -45,6 +41,33 @@ namespace SQLHelper
 
         labelCountAvailable.Text = $"Count: {listBoxAvailable.Items.Count}";
       }
+
+      DisplayTitle();
+      GetWindowValue();
+    }
+
+    private void SaveWindowValue()
+    {
+      Settings.Default.WindowHeight = Height;
+      Settings.Default.WindowWidth = Width;
+      Settings.Default.WindowLeft = Left;
+      Settings.Default.WindowTop = Top;
+      Settings.Default.Save();
+    }
+
+    private void GetWindowValue()
+    {
+      Width = Settings.Default.WindowWidth;
+      Height = Settings.Default.WindowHeight;
+      Top = Settings.Default.WindowTop < 0 ? 0 : Settings.Default.WindowTop;
+      Left = Settings.Default.WindowLeft < 0 ? 0 : Settings.Default.WindowLeft;
+    }
+
+    private void DisplayTitle()
+    {
+      Assembly assembly = Assembly.GetExecutingAssembly();
+      FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
+      Text += string.Format(" V{0}.{1}.{2}.{3}", fvi.FileMajorPart, fvi.FileMinorPart, fvi.FileBuildPart, fvi.FilePrivatePart);
     }
 
     private void ButtonAddToAvailable_Click(object sender, EventArgs e)
@@ -141,6 +164,11 @@ namespace SQLHelper
         textBoxResult.Text += Environment.NewLine;
       }
 
+    }
+
+    private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+    {
+      SaveWindowValue();
     }
   }
 }
