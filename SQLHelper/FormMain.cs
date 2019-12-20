@@ -1,11 +1,11 @@
-﻿using System;
-using System.IO;
-using System.Windows.Forms;
-using System.Diagnostics;
-using System.Reflection;
-using SQLHelper.Properties;
+﻿using SQLHelper.Properties;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Reflection;
+using System.Windows.Forms;
 
 namespace SQLHelper
 {
@@ -74,7 +74,7 @@ namespace SQLHelper
 
     private void ButtonAddToAvailable_Click(object sender, EventArgs e)
     {
-      if (textBoxAvailable.Text != string.Empty)
+      if (!string.IsNullOrEmpty(textBoxAvailable.Text))
       {
         listBoxAvailable.Items.Add(textBoxAvailable.Text);
         labelCountAvailable.Text = $"Count: {listBoxAvailable.Items.Count}";
@@ -145,7 +145,7 @@ namespace SQLHelper
 
     private void ButtonGenerate_Click(object sender, EventArgs e)
     {
-      if (textBoxSource.Text == string.Empty)
+      if (string.IsNullOrEmpty(textBoxSource.Text))
       {
         return;
       }
@@ -197,9 +197,7 @@ namespace SQLHelper
 
     private void CouperToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      Control focusedControl = FindFocusedControl(new List<Control> {
-        
-      }); // add your controls in the List
+      Control focusedControl = FindFocusedControl(new List<Control> { textBoxResult, textBoxSource, textBoxAvailable }); 
       var tb = focusedControl as TextBox;
       if (tb != null)
       {
@@ -209,7 +207,7 @@ namespace SQLHelper
 
     private void CopierToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      Control focusedControl = FindFocusedControl(new List<Control> { }); // add your controls in the List
+      Control focusedControl = FindFocusedControl(new List<Control> { textBoxResult, textBoxSource, textBoxAvailable });
       var tb = focusedControl as TextBox;
       if (tb != null)
       {
@@ -219,7 +217,7 @@ namespace SQLHelper
 
     private void CollerToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      Control focusedControl = FindFocusedControl(new List<Control> { }); // add your controls in the List
+      Control focusedControl = FindFocusedControl(new List<Control> { textBoxResult, textBoxSource, textBoxAvailable });
       var tb = focusedControl as TextBox;
       if (tb != null)
       {
@@ -229,21 +227,28 @@ namespace SQLHelper
 
     private void SelectionnertoutToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      Control focusedControl = FindFocusedControl(new List<Control> { }); // add your controls in the List
+      Control focusedControl = FindFocusedControl(new List<Control> { textBoxResult, textBoxSource, textBoxAvailable });
       TextBox control = focusedControl as TextBox;
-      if (control != null) control.SelectAll();
+      if (control != null)
+      {
+        control.SelectAll();
+      }
     }
 
-    private void CutToClipboard(TextBoxBase tb, string errorMessage = "nothing")
+    private void CutToClipboard(TextBoxBase tb)
     {
-      if (tb != ActiveControl) return;
-      if (tb.Text == string.Empty)
+      if (tb != ActiveControl)
+      {
+        return;
+      }
+
+      if (string.IsNullOrEmpty(tb.Text))
       {
         MessageBox.Show("there is an error, no text is present", "No Text", MessageBoxButtons.OK);
         return;
       }
 
-      if (tb.SelectedText == string.Empty)
+      if (string.IsNullOrEmpty(tb.SelectedText))
       {
         MessageBox.Show("there is no text selected", "No Text selected", MessageBoxButtons.OK);
         return;
@@ -253,16 +258,20 @@ namespace SQLHelper
       tb.SelectedText = string.Empty;
     }
 
-    private void CopyToClipboard(TextBoxBase tb, string message = "nothing")
+    private void CopyToClipboard(TextBoxBase tb)
     {
-      if (tb != ActiveControl) return;
-      if (tb.Text == string.Empty)
+      if (tb != ActiveControl)
+      {
+        return;
+      }
+
+      if (string.IsNullOrEmpty(tb.Text))
       {
         MessageBox.Show("there is nothing to copy", "Nothing to copy", MessageBoxButtons.OK);
         return;
       }
 
-      if (tb.SelectedText == string.Empty)
+      if (string.IsNullOrEmpty(tb.SelectedText))
       {
         MessageBox.Show("No text has been selected", "No Text selected", MessageBoxButtons.OK);
         return;
