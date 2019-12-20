@@ -4,6 +4,8 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Reflection;
 using SQLHelper.Properties;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SQLHelper
 {
@@ -138,7 +140,7 @@ namespace SQLHelper
       {
         listBoxAvailable.Items.RemoveAt(listBoxAvailable.SelectedIndex);
       }
-      
+
     }
 
     private void ButtonGenerate_Click(object sender, EventArgs e)
@@ -191,6 +193,119 @@ namespace SQLHelper
     {
       Clipboard.SetText(textBoxResult.Text);
       MessageBox.Show("Script SQL has been copied to the clipboard", "copied", MessageBoxButtons.OK);
+    }
+
+    private void CouperToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      Control focusedControl = FindFocusedControl(new List<Control> {
+        
+      }); // add your controls in the List
+      var tb = focusedControl as TextBox;
+      if (tb != null)
+      {
+        CutToClipboard(tb);
+      }
+    }
+
+    private void CopierToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      Control focusedControl = FindFocusedControl(new List<Control> { }); // add your controls in the List
+      var tb = focusedControl as TextBox;
+      if (tb != null)
+      {
+        CopyToClipboard(tb);
+      }
+    }
+
+    private void CollerToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      Control focusedControl = FindFocusedControl(new List<Control> { }); // add your controls in the List
+      var tb = focusedControl as TextBox;
+      if (tb != null)
+      {
+        PasteFromClipboard(tb);
+      }
+    }
+
+    private void SelectionnertoutToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      Control focusedControl = FindFocusedControl(new List<Control> { }); // add your controls in the List
+      TextBox control = focusedControl as TextBox;
+      if (control != null) control.SelectAll();
+    }
+
+    private void CutToClipboard(TextBoxBase tb, string errorMessage = "nothing")
+    {
+      if (tb != ActiveControl) return;
+      if (tb.Text == string.Empty)
+      {
+        MessageBox.Show("there is an error, no text is present", "No Text", MessageBoxButtons.OK);
+        return;
+      }
+
+      if (tb.SelectedText == string.Empty)
+      {
+        MessageBox.Show("there is no text selected", "No Text selected", MessageBoxButtons.OK);
+        return;
+      }
+
+      Clipboard.SetText(tb.SelectedText);
+      tb.SelectedText = string.Empty;
+    }
+
+    private void CopyToClipboard(TextBoxBase tb, string message = "nothing")
+    {
+      if (tb != ActiveControl) return;
+      if (tb.Text == string.Empty)
+      {
+        MessageBox.Show("there is nothing to copy", "Nothing to copy", MessageBoxButtons.OK);
+        return;
+      }
+
+      if (tb.SelectedText == string.Empty)
+      {
+        MessageBox.Show("No text has been selected", "No Text selected", MessageBoxButtons.OK);
+        return;
+      }
+
+      Clipboard.SetText(tb.SelectedText);
+    }
+
+    private void PasteFromClipboard(TextBoxBase tb)
+    {
+      if (tb != ActiveControl)
+      {
+        return;
+      }
+
+      var selectionIndex = tb.SelectionStart;
+      tb.SelectedText = Clipboard.GetText();
+      tb.SelectionStart = selectionIndex + Clipboard.GetText().Length;
+    }
+
+    private static Control FindFocusedControl(Control container)
+    {
+      foreach (Control childControl in container.Controls.Cast<Control>().Where(childControl => childControl.Focused))
+      {
+        return childControl;
+      }
+
+      return (from Control childControl in container.Controls select FindFocusedControl(childControl)).FirstOrDefault(maybeFocusedControl => maybeFocusedControl != null);
+    }
+
+    private static Control FindFocusedControl(List<Control> container)
+    {
+      return container.FirstOrDefault(control => control.Focused);
+    }
+
+    private static Control FindFocusedControl(params Control[] container)
+    {
+      return container.FirstOrDefault(control => control.Focused);
+    }
+
+    private static Control FindFocusedControl(IEnumerable<Control> container)
+    {
+      return container.FirstOrDefault(control => control.Focused);
     }
   }
 }

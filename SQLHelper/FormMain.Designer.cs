@@ -87,6 +87,7 @@
       this.textBoxSource.Location = new System.Drawing.Point(27, 63);
       this.textBoxSource.Multiline = true;
       this.textBoxSource.Name = "textBoxSource";
+      this.textBoxSource.ScrollBars = System.Windows.Forms.ScrollBars.Both;
       this.textBoxSource.Size = new System.Drawing.Size(353, 165);
       this.textBoxSource.TabIndex = 0;
       this.textBoxSource.Text = "use %%ServerName%%\r\ngo\r\n\r\nselect * from %%ServerName%%";
@@ -295,8 +296,9 @@
       this.couperToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.couperToolStripMenuItem.Name = "couperToolStripMenuItem";
       this.couperToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-      this.couperToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+      this.couperToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
       this.couperToolStripMenuItem.Text = "&Couper";
+      this.couperToolStripMenuItem.Click += new System.EventHandler(this.CouperToolStripMenuItem_Click);
       // 
       // copierToolStripMenuItem
       // 
@@ -304,8 +306,9 @@
       this.copierToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.copierToolStripMenuItem.Name = "copierToolStripMenuItem";
       this.copierToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-      this.copierToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+      this.copierToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
       this.copierToolStripMenuItem.Text = "Co&pier";
+      this.copierToolStripMenuItem.Click += new System.EventHandler(this.CopierToolStripMenuItem_Click);
       // 
       // collerToolStripMenuItem
       // 
@@ -313,8 +316,9 @@
       this.collerToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
       this.collerToolStripMenuItem.Name = "collerToolStripMenuItem";
       this.collerToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-      this.collerToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+      this.collerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
       this.collerToolStripMenuItem.Text = "Co&ller";
+      this.collerToolStripMenuItem.Click += new System.EventHandler(this.CollerToolStripMenuItem_Click);
       // 
       // toolStripSeparator4
       // 
@@ -324,8 +328,9 @@
       // sélectionnertoutToolStripMenuItem
       // 
       this.sélectionnertoutToolStripMenuItem.Name = "sélectionnertoutToolStripMenuItem";
-      this.sélectionnertoutToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+      this.sélectionnertoutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
       this.sélectionnertoutToolStripMenuItem.Text = "Sélectio&nner tout";
+      this.sélectionnertoutToolStripMenuItem.Click += new System.EventHandler(this.SelectionnertoutToolStripMenuItem_Click);
       // 
       // outilsToolStripMenuItem
       // 
