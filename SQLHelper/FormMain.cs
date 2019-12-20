@@ -170,5 +170,27 @@ namespace SQLHelper
     {
       SaveWindowValue();
     }
+
+    private void ButtonSelectAll_Click(object sender, EventArgs e)
+    {
+      for (int i = 0; i < listBoxAvailable.Items.Count; i++)
+      {
+        listBoxAvailable.SetSelected(i, true);
+      }
+    }
+
+    private void ButtonUnselectAll_Click(object sender, EventArgs e)
+    {
+      for (int i = 0; i < listBoxAvailable.Items.Count; i++)
+      {
+        listBoxAvailable.SetSelected(i, false);
+      }
+    }
+
+    private void ButtonCopyToClipBoard_Click(object sender, EventArgs e)
+    {
+      Clipboard.SetText(textBoxResult.Text);
+      MessageBox.Show("Script SQL has been copied to the clipboard", "copied", MessageBoxButtons.OK);
+    }
   }
 }

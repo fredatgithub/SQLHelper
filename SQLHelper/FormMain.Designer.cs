@@ -76,6 +76,9 @@
       this.labelExplanation2 = new System.Windows.Forms.Label();
       this.labelToDeploy = new System.Windows.Forms.Label();
       this.labelListServerAvailable = new System.Windows.Forms.Label();
+      this.buttonSelectAll = new System.Windows.Forms.Button();
+      this.buttonUnselectAll = new System.Windows.Forms.Button();
+      this.buttonCopyToClipBoard = new System.Windows.Forms.Button();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -146,6 +149,7 @@
       this.textBoxResult.Location = new System.Drawing.Point(27, 292);
       this.textBoxResult.Multiline = true;
       this.textBoxResult.Name = "textBoxResult";
+      this.textBoxResult.ScrollBars = System.Windows.Forms.ScrollBars.Both;
       this.textBoxResult.Size = new System.Drawing.Size(913, 206);
       this.textBoxResult.TabIndex = 6;
       // 
@@ -433,7 +437,7 @@
       // 
       // buttonDelete
       // 
-      this.buttonDelete.Location = new System.Drawing.Point(865, 162);
+      this.buttonDelete.Location = new System.Drawing.Point(865, 116);
       this.buttonDelete.Name = "buttonDelete";
       this.buttonDelete.Size = new System.Drawing.Size(75, 23);
       this.buttonDelete.TabIndex = 13;
@@ -481,11 +485,44 @@
       this.labelListServerAvailable.TabIndex = 17;
       this.labelListServerAvailable.Text = "List of servers available";
       // 
+      // buttonSelectAll
+      // 
+      this.buttonSelectAll.Location = new System.Drawing.Point(865, 145);
+      this.buttonSelectAll.Name = "buttonSelectAll";
+      this.buttonSelectAll.Size = new System.Drawing.Size(75, 23);
+      this.buttonSelectAll.TabIndex = 18;
+      this.buttonSelectAll.Text = "Select All";
+      this.buttonSelectAll.UseVisualStyleBackColor = true;
+      this.buttonSelectAll.Click += new System.EventHandler(this.ButtonSelectAll_Click);
+      // 
+      // buttonUnselectAll
+      // 
+      this.buttonUnselectAll.Location = new System.Drawing.Point(865, 174);
+      this.buttonUnselectAll.Name = "buttonUnselectAll";
+      this.buttonUnselectAll.Size = new System.Drawing.Size(75, 23);
+      this.buttonUnselectAll.TabIndex = 19;
+      this.buttonUnselectAll.Text = "Unselect All";
+      this.buttonUnselectAll.UseVisualStyleBackColor = true;
+      this.buttonUnselectAll.Click += new System.EventHandler(this.ButtonUnselectAll_Click);
+      // 
+      // buttonCopyToClipBoard
+      // 
+      this.buttonCopyToClipBoard.Location = new System.Drawing.Point(563, 251);
+      this.buttonCopyToClipBoard.Name = "buttonCopyToClipBoard";
+      this.buttonCopyToClipBoard.Size = new System.Drawing.Size(125, 23);
+      this.buttonCopyToClipBoard.TabIndex = 20;
+      this.buttonCopyToClipBoard.Text = "Copy to clipboard";
+      this.buttonCopyToClipBoard.UseVisualStyleBackColor = true;
+      this.buttonCopyToClipBoard.Click += new System.EventHandler(this.ButtonCopyToClipBoard_Click);
+      // 
       // FormMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(952, 520);
+      this.Controls.Add(this.buttonCopyToClipBoard);
+      this.Controls.Add(this.buttonUnselectAll);
+      this.Controls.Add(this.buttonSelectAll);
       this.Controls.Add(this.labelListServerAvailable);
       this.Controls.Add(this.labelToDeploy);
       this.Controls.Add(this.labelExplanation2);
@@ -565,6 +602,9 @@
         private System.Windows.Forms.Label labelExplanation2;
         private System.Windows.Forms.Label labelToDeploy;
         private System.Windows.Forms.Label labelListServerAvailable;
+        private System.Windows.Forms.Button buttonSelectAll;
+        private System.Windows.Forms.Button buttonUnselectAll;
+        private System.Windows.Forms.Button buttonCopyToClipBoard;
     }
 }
 
