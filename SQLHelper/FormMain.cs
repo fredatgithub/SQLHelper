@@ -158,10 +158,12 @@ namespace SQLHelper
 
       foreach (string serverName in listBoxToDeploy.Items)
       {
-        textBoxResult.Text += Environment.NewLine;
         textBoxResult.Text += $"-- server: {serverName}";
         textBoxResult.Text += Environment.NewLine;
         textBoxResult.Text += textBoxSource.Text.Replace("%%ServerName%%", serverName);
+        textBoxResult.Text += Environment.NewLine;
+        textBoxResult.Text += $"-- end of script for server: {serverName}";
+        textBoxResult.Text += Environment.NewLine;
         textBoxResult.Text += Environment.NewLine;
       }
 
