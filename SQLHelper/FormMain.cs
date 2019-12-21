@@ -140,7 +140,6 @@ namespace SQLHelper
       {
         listBoxAvailable.Items.RemoveAt(listBoxAvailable.SelectedIndex);
       }
-
     }
 
     private void ButtonGenerate_Click(object sender, EventArgs e)
@@ -159,10 +158,10 @@ namespace SQLHelper
 
       foreach (string serverName in listBoxToDeploy.Items)
       {
-        textBoxResult.Text += textBoxSource.Text.Replace("%%ServerName%%", serverName);
-        textBoxResult.Text += Environment.NewLine;
         textBoxResult.Text += Environment.NewLine;
         textBoxResult.Text += $"-- server: {serverName}";
+        textBoxResult.Text += Environment.NewLine;
+        textBoxResult.Text += textBoxSource.Text.Replace("%%ServerName%%", serverName);
         textBoxResult.Text += Environment.NewLine;
       }
 
