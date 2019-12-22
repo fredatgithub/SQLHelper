@@ -92,6 +92,7 @@
       this.textBoxSource.Size = new System.Drawing.Size(353, 165);
       this.textBoxSource.TabIndex = 0;
       this.textBoxSource.Text = "use %%ServerName%%\r\ngo\r\n\r\nselect * from %%ServerName%%.dbo.tableName";
+      this.textBoxSource.TextChanged += new System.EventHandler(this.TextBoxSource_TextChanged);
       // 
       // listBoxToDeploy
       // 
@@ -102,6 +103,7 @@
       this.listBoxToDeploy.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
       this.listBoxToDeploy.Size = new System.Drawing.Size(159, 160);
       this.listBoxToDeploy.TabIndex = 1;
+      this.listBoxToDeploy.SelectedIndexChanged += new System.EventHandler(this.ListBoxToDeploy_SelectedIndexChanged);
       // 
       // listBoxAvailable
       // 
@@ -112,6 +114,8 @@
       this.listBoxAvailable.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
       this.listBoxAvailable.Size = new System.Drawing.Size(159, 134);
       this.listBoxAvailable.TabIndex = 2;
+      this.listBoxAvailable.SelectedIndexChanged += new System.EventHandler(this.ListBoxAvailable_SelectedIndexChanged);
+      this.listBoxAvailable.SizeChanged += new System.EventHandler(this.ListBoxAvailable_SizeChanged);
       // 
       // buttonMoveToAvailable
       // 
@@ -156,6 +160,7 @@
       this.textBoxResult.Size = new System.Drawing.Size(913, 206);
       this.textBoxResult.TabIndex = 6;
       this.textBoxResult.Text = "Script generated";
+      this.textBoxResult.TextChanged += new System.EventHandler(this.TextBoxResult_TextChanged);
       // 
       // menuStrip1
       // 
@@ -414,6 +419,7 @@
       this.textBoxAvailable.Size = new System.Drawing.Size(159, 20);
       this.textBoxAvailable.TabIndex = 9;
       this.textBoxAvailable.Text = "server123";
+      this.textBoxAvailable.TextChanged += new System.EventHandler(this.TextBoxAvailable_TextChanged);
       // 
       // labelCountDeploy
       // 

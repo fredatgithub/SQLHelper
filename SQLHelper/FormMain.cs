@@ -46,8 +46,9 @@ namespace SQLHelper
 
       DisplayTitle();
       GetWindowValue();
+      EnableDisableButtons();
     }
-
+    
     private void SaveWindowValue()
     {
       Settings.Default.WindowHeight = Height;
@@ -79,6 +80,8 @@ namespace SQLHelper
         listBoxAvailable.Items.Add(textBoxAvailable.Text);
         labelCountAvailable.Text = $"Count: {listBoxAvailable.Items.Count}";
       }
+
+      EnableDisableButtons();
     }
 
     private void ButtonMoveToAvailable_Click(object sender, EventArgs e)
@@ -132,6 +135,7 @@ namespace SQLHelper
     private void ButtonClear_Click(object sender, EventArgs e)
     {
       listBoxAvailable.Items.Clear();
+      EnableDisableButtons();
     }
 
     private void ButtonDelete_Click(object sender, EventArgs e)
@@ -140,6 +144,8 @@ namespace SQLHelper
       {
         listBoxAvailable.Items.RemoveAt(listBoxAvailable.SelectedIndex);
       }
+
+      EnableDisableButtons();
     }
 
     private void ButtonGenerate_Click(object sender, EventArgs e)
@@ -180,6 +186,8 @@ namespace SQLHelper
       {
         listBoxAvailable.SetSelected(i, true);
       }
+
+      EnableDisableButtons();
     }
 
     private void ButtonUnselectAll_Click(object sender, EventArgs e)
@@ -188,6 +196,8 @@ namespace SQLHelper
       {
         listBoxAvailable.SetSelected(i, false);
       }
+
+      EnableDisableButtons();
     }
 
     private void ButtonCopyToClipBoard_Click(object sender, EventArgs e)
@@ -316,6 +326,48 @@ namespace SQLHelper
     private static Control FindFocusedControl(IEnumerable<Control> container)
     {
       return container.FirstOrDefault(control => control.Focused);
+    }
+
+    private void TextBoxAvailable_TextChanged(object sender, EventArgs e)
+    {
+      buttonAddToAvailable.Enabled = textBoxAvailable.Text != string.Empty;
+    }
+
+    private void ListBoxToDeploy_SelectedIndexChanged(object sender, EventArgs e)
+    {
+      buttonMoveToAvailable.Enabled = listBoxToDeploy.Items.Count != 0;
+    }
+
+    private void ListBoxAvailable_SelectedIndexChanged(object sender, EventArgs e)
+    {
+      buttonMoveToDeploy.Enabled = listBoxAvailable.Items.Count != 0;
+    }
+
+    private void TextBoxSource_TextChanged(object sender, EventArgs e)
+    {
+      buttonGenerate.Enabled = textBoxSource.Text != string.Empty;
+    }
+
+    private void TextBoxResult_TextChanged(object sender, EventArgs e)
+    {
+      buttonCopyToClipBoard.Enabled = textBoxResult.Text != string.Empty;
+    }
+
+    private void EnableDisableButtons()
+    {
+      buttonAddToAvailable.Enabled = textBoxAvailable.Text != string.Empty;
+      buttonMoveToAvailable.Enabled = listBoxToDeploy.Items.Count != 0;
+      buttonMoveToDeploy.Enabled = listBoxAvailable.Items.Count != 0;
+      buttonGenerate.Enabled = textBoxSource.Text != string.Empty;
+      buttonCopyToClipBoard.Enabled = textBoxResult.Text != string.Empty;
+      buttonDelete.Enabled = listBoxAvailable.Items.Count != 0;
+      buttonSelectAll.Enabled = listBoxAvailable.Items.Count != 0;
+      buttonUnselectAll.Enabled = listBoxAvailable.Items.Count != 0;
+    }
+
+    private void ListBoxAvailable_SizeChanged(object sender, EventArgs e)
+    {
+      EnableDisableButtons();
     }
   }
 }
