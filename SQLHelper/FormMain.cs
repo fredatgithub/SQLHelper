@@ -47,8 +47,14 @@ namespace SQLHelper
       DisplayTitle();
       GetWindowValue();
       EnableDisableButtons();
+      // disable not implemented menu items:
+      annulerToolStripMenuItem.Enabled = false;
+      rétablirToolStripMenuItem.Enabled = false;
+      outilsToolStripMenuItem.Enabled = false;
+      personnaliserToolStripMenuItem.Enabled = false;
+      optionsToolStripMenuItem.Enabled = false;
     }
-    
+
     private void SaveWindowValue()
     {
       Settings.Default.WindowHeight = Height;
@@ -213,7 +219,7 @@ namespace SQLHelper
 
     private void CouperToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      Control focusedControl = FindFocusedControl(new List<Control> { textBoxResult, textBoxSource, textBoxAvailable }); 
+      Control focusedControl = FindFocusedControl(new List<Control> { textBoxResult, textBoxSource, textBoxAvailable });
       var tb = focusedControl as TextBox;
       if (tb != null)
       {
@@ -376,6 +382,85 @@ namespace SQLHelper
     private void ListBoxAvailable_SizeChanged(object sender, EventArgs e)
     {
       EnableDisableButtons();
+    }
+
+    private void EnregistrerToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      SaveFileDialog savefile = new SaveFileDialog
+      {
+        Filter = "SQL Script files (*.sql)|*.sql |All files (*.*)|*.*",
+        InitialDirectory = @"c:\temp", // for test
+        Title = "Save SQL file"
+      };
+      
+      if (savefile.ShowDialog() == DialogResult.OK)
+      {
+        try
+        {
+          using (StreamWriter sw = new StreamWriter(savefile.FileName))
+          {
+            sw.Write(textBoxResult.Text);
+          }
+        }
+        catch (Exception exception)
+        {
+          MessageBox.Show($"Error while trying to save the script file. {Environment.NewLine}{exception.Message}", "Error", MessageBoxButtons.OK);
+        }
+      }
+    }
+
+    private void EnregistrersousToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      EnregistrerToolStripMenuItem_Click(sender, e);
+    }
+
+    private void OuvrirToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      OpenFileDialog openFileDialog = new OpenFileDialog
+      {
+        Filter = "SQL Script files (*.sql)|*.sql |All files (*.*)|*.*",
+        InitialDirectory = @"c:\temp", // for test
+        Title = "Open SQL file"
+      };
+
+      if (openFileDialog.ShowDialog() == DialogResult.OK)
+      {
+        string openFileContent = string.Empty;
+        try
+        {
+          using (StreamReader sr = new StreamReader(openFileDialog.FileName))
+          {
+            openFileContent = sr.ReadToEnd();
+          }
+        }
+        catch (Exception exception)
+        {
+          MessageBox.Show($"There was an error while reading the file {openFileDialog.FileName}{Environment.NewLine}{exception.Message}");
+        }
+        
+        if (textBoxSource.Text != string.Empty)
+        {
+          if (MessageBox.Show("Do you want to replace existing text?", "Replace text", MessageBoxButtons.YesNo) == DialogResult.Yes)
+          {
+            textBoxSource.Text = openFileContent;
+          }
+        }
+        else
+        {
+          textBoxSource.Text = openFileContent;
+        }
+      }
+    }
+
+    private void NouveauToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      if (textBoxSource.Text != string.Empty)
+      {
+        if (MessageBox.Show("Do you want to delete the existing text?", "Delete text", MessageBoxButtons.YesNo) == DialogResult.Yes)
+        {
+          textBoxSource.Text = string.Empty;
+        }
+      }
     }
   }
 }

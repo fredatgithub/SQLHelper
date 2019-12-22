@@ -91,7 +91,7 @@
       this.textBoxSource.ScrollBars = System.Windows.Forms.ScrollBars.Both;
       this.textBoxSource.Size = new System.Drawing.Size(353, 165);
       this.textBoxSource.TabIndex = 0;
-      this.textBoxSource.Text = "use %%ServerName%%\r\ngo\r\n\r\nselect * from %%ServerName%%.dbo.tableName";
+      this.textBoxSource.Text = "use %%ServerName%%\r\ngo\r\n\r\nselect * from %%ServerName%%.dbo.tableName\r\n";
       this.textBoxSource.TextChanged += new System.EventHandler(this.TextBoxSource_TextChanged);
       // 
       // listBoxToDeploy
@@ -200,6 +200,7 @@
       this.nouveauToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
       this.nouveauToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
       this.nouveauToolStripMenuItem.Text = "&Nouveau";
+      this.nouveauToolStripMenuItem.Click += new System.EventHandler(this.NouveauToolStripMenuItem_Click);
       // 
       // ouvrirToolStripMenuItem
       // 
@@ -209,6 +210,7 @@
       this.ouvrirToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
       this.ouvrirToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
       this.ouvrirToolStripMenuItem.Text = "&Ouvrir";
+      this.ouvrirToolStripMenuItem.Click += new System.EventHandler(this.OuvrirToolStripMenuItem_Click);
       // 
       // toolStripSeparator
       // 
@@ -223,12 +225,14 @@
       this.enregistrerToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
       this.enregistrerToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
       this.enregistrerToolStripMenuItem.Text = "&Enregistrer";
+      this.enregistrerToolStripMenuItem.Click += new System.EventHandler(this.EnregistrerToolStripMenuItem_Click);
       // 
       // enregistrersousToolStripMenuItem
       // 
       this.enregistrersousToolStripMenuItem.Name = "enregistrersousToolStripMenuItem";
       this.enregistrersousToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
       this.enregistrersousToolStripMenuItem.Text = "Enregistrer &sous";
+      this.enregistrersousToolStripMenuItem.Click += new System.EventHandler(this.EnregistrersousToolStripMenuItem_Click);
       // 
       // toolStripSeparator1
       // 
