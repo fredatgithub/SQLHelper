@@ -142,7 +142,12 @@ namespace SQLHelper
     {
       if (listBoxAvailable.SelectedItems.Count != 0)
       {
-        listBoxAvailable.Items.RemoveAt(listBoxAvailable.SelectedIndex);
+        for (int i = listBoxAvailable.SelectedIndices.Count - 1; i >= 0; i--)
+        {
+          listBoxAvailable.Items.RemoveAt(listBoxAvailable.SelectedIndices[i]);
+        }
+
+        listBoxAvailable.SelectedIndex = -1;
       }
 
       EnableDisableButtons();
@@ -341,6 +346,7 @@ namespace SQLHelper
     private void ListBoxAvailable_SelectedIndexChanged(object sender, EventArgs e)
     {
       buttonMoveToDeploy.Enabled = listBoxAvailable.Items.Count != 0;
+      buttonDelete.Enabled = listBoxAvailable.SelectedIndex != -1;
     }
 
     private void TextBoxSource_TextChanged(object sender, EventArgs e)
@@ -358,9 +364,11 @@ namespace SQLHelper
       buttonAddToAvailable.Enabled = textBoxAvailable.Text != string.Empty;
       buttonMoveToAvailable.Enabled = listBoxToDeploy.Items.Count != 0;
       buttonMoveToDeploy.Enabled = listBoxAvailable.Items.Count != 0;
+      buttonMoveToDeploy.Enabled = listBoxAvailable.SelectedIndex != -1;
       buttonGenerate.Enabled = textBoxSource.Text != string.Empty;
       buttonCopyToClipBoard.Enabled = textBoxResult.Text != string.Empty;
       buttonDelete.Enabled = listBoxAvailable.Items.Count != 0;
+      buttonDelete.Enabled = listBoxAvailable.SelectedIndex != -1;
       buttonSelectAll.Enabled = listBoxAvailable.Items.Count != 0;
       buttonUnselectAll.Enabled = listBoxAvailable.Items.Count != 0;
     }
