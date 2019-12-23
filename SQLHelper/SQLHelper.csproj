@@ -92,5 +92,11 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LibraryHelper\LibraryHelper.csproj">
+      <Project>{b3827777-87f3-4afe-88cb-4016178962b5}</Project>
+      <Name>LibraryHelper</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

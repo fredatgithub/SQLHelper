@@ -79,6 +79,10 @@
       this.buttonSelectAll = new System.Windows.Forms.Button();
       this.buttonUnselectAll = new System.Windows.Forms.Button();
       this.buttonCopyToClipBoard = new System.Windows.Forms.Button();
+      this.buttonDeployUnselectAll = new System.Windows.Forms.Button();
+      this.buttonDeploySelectAll = new System.Windows.Forms.Button();
+      this.buttonDeployDelete = new System.Windows.Forms.Button();
+      this.buttonDeployClear = new System.Windows.Forms.Button();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -97,18 +101,19 @@
       // listBoxToDeploy
       // 
       this.listBoxToDeploy.FormattingEnabled = true;
-      this.listBoxToDeploy.Location = new System.Drawing.Point(405, 63);
+      this.listBoxToDeploy.Location = new System.Drawing.Point(501, 63);
       this.listBoxToDeploy.Name = "listBoxToDeploy";
       this.listBoxToDeploy.ScrollAlwaysVisible = true;
       this.listBoxToDeploy.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
       this.listBoxToDeploy.Size = new System.Drawing.Size(159, 160);
       this.listBoxToDeploy.TabIndex = 1;
       this.listBoxToDeploy.SelectedIndexChanged += new System.EventHandler(this.ListBoxToDeploy_SelectedIndexChanged);
+      this.listBoxToDeploy.SizeChanged += new System.EventHandler(this.ListBoxToDeploy_SizeChanged);
       // 
       // listBoxAvailable
       // 
       this.listBoxAvailable.FormattingEnabled = true;
-      this.listBoxAvailable.Location = new System.Drawing.Point(687, 89);
+      this.listBoxAvailable.Location = new System.Drawing.Point(783, 89);
       this.listBoxAvailable.Name = "listBoxAvailable";
       this.listBoxAvailable.ScrollAlwaysVisible = true;
       this.listBoxAvailable.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
@@ -119,7 +124,7 @@
       // 
       // buttonMoveToAvailable
       // 
-      this.buttonMoveToAvailable.Location = new System.Drawing.Point(592, 87);
+      this.buttonMoveToAvailable.Location = new System.Drawing.Point(688, 87);
       this.buttonMoveToAvailable.Name = "buttonMoveToAvailable";
       this.buttonMoveToAvailable.Size = new System.Drawing.Size(75, 23);
       this.buttonMoveToAvailable.TabIndex = 3;
@@ -129,7 +134,7 @@
       // 
       // buttonMoveToDeploy
       // 
-      this.buttonMoveToDeploy.Location = new System.Drawing.Point(592, 162);
+      this.buttonMoveToDeploy.Location = new System.Drawing.Point(688, 162);
       this.buttonMoveToDeploy.Name = "buttonMoveToDeploy";
       this.buttonMoveToDeploy.Size = new System.Drawing.Size(75, 23);
       this.buttonMoveToDeploy.TabIndex = 4;
@@ -157,7 +162,7 @@
       this.textBoxResult.Multiline = true;
       this.textBoxResult.Name = "textBoxResult";
       this.textBoxResult.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-      this.textBoxResult.Size = new System.Drawing.Size(913, 206);
+      this.textBoxResult.Size = new System.Drawing.Size(1026, 206);
       this.textBoxResult.TabIndex = 6;
       this.textBoxResult.Text = "Script generated";
       this.textBoxResult.TextChanged += new System.EventHandler(this.TextBoxResult_TextChanged);
@@ -171,7 +176,7 @@
             this.aideToolStripMenuItem});
       this.menuStrip1.Location = new System.Drawing.Point(0, 0);
       this.menuStrip1.Name = "menuStrip1";
-      this.menuStrip1.Size = new System.Drawing.Size(952, 24);
+      this.menuStrip1.Size = new System.Drawing.Size(1065, 24);
       this.menuStrip1.TabIndex = 7;
       this.menuStrip1.Text = "menuStrip1";
       // 
@@ -408,7 +413,7 @@
       // 
       // buttonAddToAvailable
       // 
-      this.buttonAddToAvailable.Location = new System.Drawing.Point(592, 27);
+      this.buttonAddToAvailable.Location = new System.Drawing.Point(688, 27);
       this.buttonAddToAvailable.Name = "buttonAddToAvailable";
       this.buttonAddToAvailable.Size = new System.Drawing.Size(75, 23);
       this.buttonAddToAvailable.TabIndex = 8;
@@ -418,7 +423,7 @@
       // 
       // textBoxAvailable
       // 
-      this.textBoxAvailable.Location = new System.Drawing.Point(687, 29);
+      this.textBoxAvailable.Location = new System.Drawing.Point(783, 29);
       this.textBoxAvailable.Name = "textBoxAvailable";
       this.textBoxAvailable.Size = new System.Drawing.Size(159, 20);
       this.textBoxAvailable.TabIndex = 9;
@@ -428,7 +433,7 @@
       // labelCountDeploy
       // 
       this.labelCountDeploy.AutoSize = true;
-      this.labelCountDeploy.Location = new System.Drawing.Point(405, 230);
+      this.labelCountDeploy.Location = new System.Drawing.Point(501, 230);
       this.labelCountDeploy.Name = "labelCountDeploy";
       this.labelCountDeploy.Size = new System.Drawing.Size(47, 13);
       this.labelCountDeploy.TabIndex = 10;
@@ -437,7 +442,7 @@
       // labelCountAvailable
       // 
       this.labelCountAvailable.AutoSize = true;
-      this.labelCountAvailable.Location = new System.Drawing.Point(684, 230);
+      this.labelCountAvailable.Location = new System.Drawing.Point(780, 230);
       this.labelCountAvailable.Name = "labelCountAvailable";
       this.labelCountAvailable.Size = new System.Drawing.Size(47, 13);
       this.labelCountAvailable.TabIndex = 11;
@@ -445,7 +450,7 @@
       // 
       // buttonClear
       // 
-      this.buttonClear.Location = new System.Drawing.Point(865, 87);
+      this.buttonClear.Location = new System.Drawing.Point(961, 87);
       this.buttonClear.Name = "buttonClear";
       this.buttonClear.Size = new System.Drawing.Size(75, 23);
       this.buttonClear.TabIndex = 12;
@@ -455,7 +460,7 @@
       // 
       // buttonDelete
       // 
-      this.buttonDelete.Location = new System.Drawing.Point(865, 116);
+      this.buttonDelete.Location = new System.Drawing.Point(961, 116);
       this.buttonDelete.Name = "buttonDelete";
       this.buttonDelete.Size = new System.Drawing.Size(75, 23);
       this.buttonDelete.TabIndex = 13;
@@ -487,7 +492,7 @@
       // 
       this.labelToDeploy.AutoSize = true;
       this.labelToDeploy.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelToDeploy.Location = new System.Drawing.Point(405, 36);
+      this.labelToDeploy.Location = new System.Drawing.Point(501, 36);
       this.labelToDeploy.Name = "labelToDeploy";
       this.labelToDeploy.Size = new System.Drawing.Size(137, 13);
       this.labelToDeploy.TabIndex = 16;
@@ -497,7 +502,7 @@
       // 
       this.labelListServerAvailable.AutoSize = true;
       this.labelListServerAvailable.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelListServerAvailable.Location = new System.Drawing.Point(684, 63);
+      this.labelListServerAvailable.Location = new System.Drawing.Point(780, 63);
       this.labelListServerAvailable.Name = "labelListServerAvailable";
       this.labelListServerAvailable.Size = new System.Drawing.Size(142, 13);
       this.labelListServerAvailable.TabIndex = 17;
@@ -505,7 +510,7 @@
       // 
       // buttonSelectAll
       // 
-      this.buttonSelectAll.Location = new System.Drawing.Point(865, 145);
+      this.buttonSelectAll.Location = new System.Drawing.Point(961, 145);
       this.buttonSelectAll.Name = "buttonSelectAll";
       this.buttonSelectAll.Size = new System.Drawing.Size(75, 23);
       this.buttonSelectAll.TabIndex = 18;
@@ -515,7 +520,7 @@
       // 
       // buttonUnselectAll
       // 
-      this.buttonUnselectAll.Location = new System.Drawing.Point(865, 174);
+      this.buttonUnselectAll.Location = new System.Drawing.Point(961, 174);
       this.buttonUnselectAll.Name = "buttonUnselectAll";
       this.buttonUnselectAll.Size = new System.Drawing.Size(75, 23);
       this.buttonUnselectAll.TabIndex = 19;
@@ -525,7 +530,7 @@
       // 
       // buttonCopyToClipBoard
       // 
-      this.buttonCopyToClipBoard.Location = new System.Drawing.Point(563, 251);
+      this.buttonCopyToClipBoard.Location = new System.Drawing.Point(504, 251);
       this.buttonCopyToClipBoard.Name = "buttonCopyToClipBoard";
       this.buttonCopyToClipBoard.Size = new System.Drawing.Size(125, 23);
       this.buttonCopyToClipBoard.TabIndex = 20;
@@ -533,11 +538,55 @@
       this.buttonCopyToClipBoard.UseVisualStyleBackColor = true;
       this.buttonCopyToClipBoard.Click += new System.EventHandler(this.ButtonCopyToClipBoard_Click);
       // 
+      // buttonDeployUnselectAll
+      // 
+      this.buttonDeployUnselectAll.Location = new System.Drawing.Point(408, 150);
+      this.buttonDeployUnselectAll.Name = "buttonDeployUnselectAll";
+      this.buttonDeployUnselectAll.Size = new System.Drawing.Size(75, 23);
+      this.buttonDeployUnselectAll.TabIndex = 24;
+      this.buttonDeployUnselectAll.Text = "Unselect All";
+      this.buttonDeployUnselectAll.UseVisualStyleBackColor = true;
+      this.buttonDeployUnselectAll.Click += new System.EventHandler(this.ButtonDeployUnselectAll_Click);
+      // 
+      // buttonDeploySelectAll
+      // 
+      this.buttonDeploySelectAll.Location = new System.Drawing.Point(408, 121);
+      this.buttonDeploySelectAll.Name = "buttonDeploySelectAll";
+      this.buttonDeploySelectAll.Size = new System.Drawing.Size(75, 23);
+      this.buttonDeploySelectAll.TabIndex = 23;
+      this.buttonDeploySelectAll.Text = "Select All";
+      this.buttonDeploySelectAll.UseVisualStyleBackColor = true;
+      this.buttonDeploySelectAll.Click += new System.EventHandler(this.ButtonDeploySelectAll_Click);
+      // 
+      // buttonDeployDelete
+      // 
+      this.buttonDeployDelete.Location = new System.Drawing.Point(408, 92);
+      this.buttonDeployDelete.Name = "buttonDeployDelete";
+      this.buttonDeployDelete.Size = new System.Drawing.Size(75, 23);
+      this.buttonDeployDelete.TabIndex = 22;
+      this.buttonDeployDelete.Text = "Delete -->";
+      this.buttonDeployDelete.UseVisualStyleBackColor = true;
+      this.buttonDeployDelete.Click += new System.EventHandler(this.ButtonDeployDelete_Click);
+      // 
+      // buttonDeployClear
+      // 
+      this.buttonDeployClear.Location = new System.Drawing.Point(408, 63);
+      this.buttonDeployClear.Name = "buttonDeployClear";
+      this.buttonDeployClear.Size = new System.Drawing.Size(75, 23);
+      this.buttonDeployClear.TabIndex = 21;
+      this.buttonDeployClear.Text = "Clear -->";
+      this.buttonDeployClear.UseVisualStyleBackColor = true;
+      this.buttonDeployClear.Click += new System.EventHandler(this.ButtonDeployClear_Click);
+      // 
       // FormMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(952, 520);
+      this.ClientSize = new System.Drawing.Size(1065, 520);
+      this.Controls.Add(this.buttonDeployUnselectAll);
+      this.Controls.Add(this.buttonDeploySelectAll);
+      this.Controls.Add(this.buttonDeployDelete);
+      this.Controls.Add(this.buttonDeployClear);
       this.Controls.Add(this.buttonCopyToClipBoard);
       this.Controls.Add(this.buttonUnselectAll);
       this.Controls.Add(this.buttonSelectAll);
@@ -623,6 +672,10 @@
         private System.Windows.Forms.Button buttonSelectAll;
         private System.Windows.Forms.Button buttonUnselectAll;
         private System.Windows.Forms.Button buttonCopyToClipBoard;
+        private System.Windows.Forms.Button buttonDeployUnselectAll;
+        private System.Windows.Forms.Button buttonDeploySelectAll;
+        private System.Windows.Forms.Button buttonDeployDelete;
+        private System.Windows.Forms.Button buttonDeployClear;
     }
 }
 

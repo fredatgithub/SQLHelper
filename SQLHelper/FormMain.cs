@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
+using LibraryHelper;
 
 namespace SQLHelper
 {
@@ -53,6 +54,8 @@ namespace SQLHelper
       outilsToolStripMenuItem.Enabled = false;
       personnaliserToolStripMenuItem.Enabled = false;
       optionsToolStripMenuItem.Enabled = false;
+
+
     }
 
     private void SaveWindowValue()
@@ -61,6 +64,7 @@ namespace SQLHelper
       Settings.Default.WindowWidth = Width;
       Settings.Default.WindowLeft = Left;
       Settings.Default.WindowTop = Top;
+      Settings.Default.textBoxAvailable = textBoxAvailable.Text;
       Settings.Default.Save();
     }
 
@@ -70,6 +74,7 @@ namespace SQLHelper
       Height = Settings.Default.WindowHeight;
       Top = Settings.Default.WindowTop < 0 ? 0 : Settings.Default.WindowTop;
       Left = Settings.Default.WindowLeft < 0 ? 0 : Settings.Default.WindowLeft;
+      textBoxAvailable.Text = Settings.Default.textBoxAvailable;
     }
 
     private void DisplayTitle()
@@ -92,47 +97,17 @@ namespace SQLHelper
 
     private void ButtonMoveToAvailable_Click(object sender, EventArgs e)
     {
-      if (listBoxToDeploy.SelectedItems.Count != 0)
-      {
-        foreach (var item in listBoxToDeploy.SelectedItems)
-        {
-          listBoxAvailable.Items.Add(item);
-        }
-
-        UpdateCounterLAbels();
-        listBoxToDeploy.SelectedIndex = -1;
-      }
+      WindowsHelper.MoveItemsFromListBoxToListBox(listBoxToDeploy, listBoxAvailable);
+      EnableDisableButtons();
     }
 
     private void ButtonMoveToDeploy_Click(object sender, EventArgs e)
     {
-      if (listBoxAvailable.SelectedItems.Count != 0)
-      {
-        foreach (var item in listBoxAvailable.SelectedItems)
-        {
-          listBoxToDeploy.Items.Add(item);
-        }
-        //for (int x = listBox1.SelectedIndices.Count - 1; x >= 0; x--)
-        //{
-        //  int index = listBox1.SelectedIndices[x];
-        //  listBox2.Items.Add(listBox1.Items[index]);
-        //  listBox1.Items.RemoveAt(index);
-        //}
-
-        //for (int i = listBoxAvailable.SelectedIndices.Count; i >= 0; i--)
-        //{
-        //  int index = listBoxAvailable.SelectedIndices[i - 1];
-        //  listBoxToDeploy.Items.Add(listBoxAvailable.Items[index]);
-        //  listBoxAvailable.Items.RemoveAt(index);
-        //}
-
-        listBoxAvailable.SelectedIndex = -1;
-
-        UpdateCounterLAbels();
-      }
+      WindowsHelper.MoveItemsFromListBoxToListBox(listBoxAvailable, listBoxToDeploy);
+      EnableDisableButtons();
     }
 
-    private void UpdateCounterLAbels()
+    private void UpdateCounterLabels()
     {
       labelCountAvailable.Text = $"Count: {listBoxAvailable.Items.Count}";
       labelCountDeploy.Text = $"Count: {listBoxToDeploy.Items.Count}";
@@ -140,22 +115,13 @@ namespace SQLHelper
 
     private void ButtonClear_Click(object sender, EventArgs e)
     {
-      listBoxAvailable.Items.Clear();
+      WindowsHelper.ClearListbox(listBoxAvailable);
       EnableDisableButtons();
     }
 
     private void ButtonDelete_Click(object sender, EventArgs e)
     {
-      if (listBoxAvailable.SelectedItems.Count != 0)
-      {
-        for (int i = listBoxAvailable.SelectedIndices.Count - 1; i >= 0; i--)
-        {
-          listBoxAvailable.Items.RemoveAt(listBoxAvailable.SelectedIndices[i]);
-        }
-
-        listBoxAvailable.SelectedIndex = -1;
-      }
-
+      WindowsHelper.DeleteSelectedItemsFromListbox(listBoxAvailable);
       EnableDisableButtons();
     }
 
@@ -183,7 +149,6 @@ namespace SQLHelper
         textBoxResult.Text += Environment.NewLine;
         textBoxResult.Text += Environment.NewLine;
       }
-
     }
 
     private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
@@ -193,21 +158,13 @@ namespace SQLHelper
 
     private void ButtonSelectAll_Click(object sender, EventArgs e)
     {
-      for (int i = 0; i < listBoxAvailable.Items.Count; i++)
-      {
-        listBoxAvailable.SetSelected(i, true);
-      }
-
+      WindowsHelper.SelectAllItemsFromListBox(listBoxAvailable);
       EnableDisableButtons();
     }
 
     private void ButtonUnselectAll_Click(object sender, EventArgs e)
     {
-      for (int i = 0; i < listBoxAvailable.Items.Count; i++)
-      {
-        listBoxAvailable.SetSelected(i, false);
-      }
-
+      WindowsHelper.SelectAllItemsFromListBox(listBoxAvailable, false);
       EnableDisableButtons();
     }
 
@@ -346,13 +303,12 @@ namespace SQLHelper
 
     private void ListBoxToDeploy_SelectedIndexChanged(object sender, EventArgs e)
     {
-      buttonMoveToAvailable.Enabled = listBoxToDeploy.Items.Count != 0;
+      EnableDisableButtons();
     }
 
     private void ListBoxAvailable_SelectedIndexChanged(object sender, EventArgs e)
     {
-      buttonMoveToDeploy.Enabled = listBoxAvailable.Items.Count != 0;
-      buttonDelete.Enabled = listBoxAvailable.SelectedIndex != -1;
+      EnableDisableButtons();
     }
 
     private void TextBoxSource_TextChanged(object sender, EventArgs e)
@@ -369,14 +325,27 @@ namespace SQLHelper
     {
       buttonAddToAvailable.Enabled = textBoxAvailable.Text != string.Empty;
       buttonMoveToAvailable.Enabled = listBoxToDeploy.Items.Count != 0;
+      buttonMoveToAvailable.Enabled = listBoxToDeploy.SelectedIndex != -1;
       buttonMoveToDeploy.Enabled = listBoxAvailable.Items.Count != 0;
       buttonMoveToDeploy.Enabled = listBoxAvailable.SelectedIndex != -1;
       buttonGenerate.Enabled = textBoxSource.Text != string.Empty;
       buttonCopyToClipBoard.Enabled = textBoxResult.Text != string.Empty;
       buttonDelete.Enabled = listBoxAvailable.Items.Count != 0;
       buttonDelete.Enabled = listBoxAvailable.SelectedIndex != -1;
-      buttonSelectAll.Enabled = listBoxAvailable.Items.Count != 0;
-      buttonUnselectAll.Enabled = listBoxAvailable.Items.Count != 0;
+      buttonSelectAll.Enabled = listBoxAvailable.Items.Count > 0;
+      buttonUnselectAll.Enabled = listBoxAvailable.Items.Count > 0;
+      buttonUnselectAll.Enabled = listBoxAvailable.SelectedIndex != -1;
+      buttonClear.Enabled = listBoxAvailable.Items.Count > 0;
+
+      buttonDeployClear.Enabled = listBoxToDeploy.Items.Count > 0;
+      buttonDeployDelete.Enabled = listBoxToDeploy.Items.Count != 0;
+      buttonDeployDelete.Enabled = listBoxToDeploy.SelectedIndex != -1;
+      buttonDeploySelectAll.Enabled = listBoxToDeploy.Items.Count != 0;
+      buttonDeployUnselectAll.Enabled = listBoxToDeploy.Items.Count != 0;
+      buttonDeployUnselectAll.Enabled = listBoxToDeploy.Items.Count > 0;
+      buttonDeployUnselectAll.Enabled = listBoxToDeploy.SelectedIndex != -1;
+
+      UpdateCounterLabels();
     }
 
     private void ListBoxAvailable_SizeChanged(object sender, EventArgs e)
@@ -392,7 +361,7 @@ namespace SQLHelper
         InitialDirectory = @"c:\temp", // for test
         Title = "Save SQL file"
       };
-      
+
       if (savefile.ShowDialog() == DialogResult.OK)
       {
         try
@@ -437,7 +406,7 @@ namespace SQLHelper
         {
           MessageBox.Show($"There was an error while reading the file {openFileDialog.FileName}{Environment.NewLine}{exception.Message}");
         }
-        
+
         if (textBoxSource.Text != string.Empty)
         {
           if (MessageBox.Show("Do you want to replace existing text?", "Replace text", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -461,6 +430,35 @@ namespace SQLHelper
           textBoxSource.Text = string.Empty;
         }
       }
+    }
+
+    private void ButtonDeployClear_Click(object sender, EventArgs e)
+    {
+      WindowsHelper.ClearListbox(listBoxToDeploy);
+      EnableDisableButtons();
+    }
+
+    private void ButtonDeployDelete_Click(object sender, EventArgs e)
+    {
+      WindowsHelper.DeleteSelectedItemsFromListbox(listBoxToDeploy);
+      EnableDisableButtons();
+    }
+
+    private void ButtonDeploySelectAll_Click(object sender, EventArgs e)
+    {
+      WindowsHelper.SelectAllItemsFromListBox(listBoxToDeploy);
+      EnableDisableButtons();
+    }
+
+    private void ListBoxToDeploy_SizeChanged(object sender, EventArgs e)
+    {
+      EnableDisableButtons();
+    }
+
+    private void ButtonDeployUnselectAll_Click(object sender, EventArgs e)
+    {
+      WindowsHelper.SelectAllItemsFromListBox(listBoxToDeploy, false);
+      EnableDisableButtons();
     }
   }
 }
