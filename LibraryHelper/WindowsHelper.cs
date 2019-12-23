@@ -58,7 +58,7 @@ namespace LibraryHelper
       }
     }
 
-    public static string DisplayDLLVersion()
+    public static string GetDLLVersion()
     {
       Assembly assembly = Assembly.GetExecutingAssembly();
       FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
