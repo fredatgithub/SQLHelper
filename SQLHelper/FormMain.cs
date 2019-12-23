@@ -1,4 +1,5 @@
-﻿using SQLHelper.Properties;
+﻿using LibraryHelper;
+using SQLHelper.Properties;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -6,7 +7,6 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
-using LibraryHelper;
 
 namespace SQLHelper
 {
@@ -27,7 +27,7 @@ namespace SQLHelper
       string serverListFileName = "serverList.txt";
       if (!File.Exists(serverListFileName))
       {
-        // create the file
+        // create the file serverList.txt if not exists
         using (StreamWriter sw = new StreamWriter(serverListFileName))
         {
           sw.WriteLine("server1");
@@ -54,8 +54,6 @@ namespace SQLHelper
       outilsToolStripMenuItem.Enabled = false;
       personnaliserToolStripMenuItem.Enabled = false;
       optionsToolStripMenuItem.Enabled = false;
-
-
     }
 
     private void SaveWindowValue()
@@ -214,61 +212,61 @@ namespace SQLHelper
       }
     }
 
-    private void CutToClipboard(TextBoxBase tb)
+    private void CutToClipboard(TextBoxBase textbox)
     {
-      if (tb != ActiveControl)
+      if (textbox != ActiveControl)
       {
         return;
       }
 
-      if (string.IsNullOrEmpty(tb.Text))
+      if (string.IsNullOrEmpty(textbox.Text))
       {
         MessageBox.Show("there is an error, no text is present", "No Text", MessageBoxButtons.OK);
         return;
       }
 
-      if (string.IsNullOrEmpty(tb.SelectedText))
+      if (string.IsNullOrEmpty(textbox.SelectedText))
       {
         MessageBox.Show("there is no text selected", "No Text selected", MessageBoxButtons.OK);
         return;
       }
 
-      Clipboard.SetText(tb.SelectedText);
-      tb.SelectedText = string.Empty;
+      Clipboard.SetText(textbox.SelectedText);
+      textbox.SelectedText = string.Empty;
     }
 
-    private void CopyToClipboard(TextBoxBase tb)
+    private void CopyToClipboard(TextBoxBase textbox)
     {
-      if (tb != ActiveControl)
+      if (textbox != ActiveControl)
       {
         return;
       }
 
-      if (string.IsNullOrEmpty(tb.Text))
+      if (string.IsNullOrEmpty(textbox.Text))
       {
         MessageBox.Show("there is nothing to copy", "Nothing to copy", MessageBoxButtons.OK);
         return;
       }
 
-      if (string.IsNullOrEmpty(tb.SelectedText))
+      if (string.IsNullOrEmpty(textbox.SelectedText))
       {
         MessageBox.Show("No text has been selected", "No Text selected", MessageBoxButtons.OK);
         return;
       }
 
-      Clipboard.SetText(tb.SelectedText);
+      Clipboard.SetText(textbox.SelectedText);
     }
 
-    private void PasteFromClipboard(TextBoxBase tb)
+    private void PasteFromClipboard(TextBoxBase textbox)
     {
-      if (tb != ActiveControl)
+      if (textbox != ActiveControl)
       {
         return;
       }
 
-      var selectionIndex = tb.SelectionStart;
-      tb.SelectedText = Clipboard.GetText();
-      tb.SelectionStart = selectionIndex + Clipboard.GetText().Length;
+      var selectionIndex = textbox.SelectionStart;
+      textbox.SelectedText = Clipboard.GetText();
+      textbox.SelectionStart = selectionIndex + Clipboard.GetText().Length;
     }
 
     private static Control FindFocusedControl(Control container)

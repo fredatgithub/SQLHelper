@@ -1,4 +1,6 @@
-﻿using System.Windows.Forms;
+﻿using System.Diagnostics;
+using System.Reflection;
+using System.Windows.Forms;
 
 namespace LibraryHelper
 {
@@ -54,6 +56,13 @@ namespace LibraryHelper
 
         listBoxFrom.SelectedIndex = -1;
       }
+    }
+
+    public static string DisplayDLLVersion()
+    {
+      Assembly assembly = Assembly.GetExecutingAssembly();
+      FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
+      return string.Format(" V{0}.{1}.{2}.{3}", fvi.FileMajorPart, fvi.FileMinorPart, fvi.FileBuildPart, fvi.FilePrivatePart);
     }
   }
 }
