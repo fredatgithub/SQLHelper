@@ -342,7 +342,8 @@ namespace SQLHelper
       buttonDeployUnselectAll.Enabled = listBoxToDeploy.Items.Count != 0;
       buttonDeployUnselectAll.Enabled = listBoxToDeploy.Items.Count > 0;
       buttonDeployUnselectAll.Enabled = listBoxToDeploy.SelectedIndex != -1;
-
+      buttonGenerate.Enabled = listBoxToDeploy.Items.Count > 0;
+      buttonCopyToClipBoard.Enabled = textBoxResult.Text.Length > 0;
       UpdateCounterLabels();
     }
 
