@@ -354,20 +354,22 @@ namespace SQLHelper
 
     private void EnregistrerToolStripMenuItem_Click(object sender, EventArgs e)
     {
-      SaveFileDialog savefile = new SaveFileDialog
+      SaveFileDialog saveFileDialog = new SaveFileDialog
       {
         Filter = "SQL Script files (*.sql)|*.sql |All files (*.*)|*.*",
-        InitialDirectory = @"c:\temp", // for test
         Title = "Save SQL file"
       };
 
-      if (savefile.ShowDialog() == DialogResult.OK)
+      //saveFileDialog.InitialDirectory = @"c:\temp";  // for test
+      saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments); //for prod
+
+      if (saveFileDialog.ShowDialog() == DialogResult.OK)
       {
         try
         {
-          using (StreamWriter sw = new StreamWriter(savefile.FileName))
+          using (StreamWriter streamWriter = new StreamWriter(saveFileDialog.FileName))
           {
-            sw.Write(textBoxResult.Text);
+            streamWriter.Write(textBoxResult.Text);
           }
         }
         catch (Exception exception)
@@ -387,18 +389,20 @@ namespace SQLHelper
       OpenFileDialog openFileDialog = new OpenFileDialog
       {
         Filter = "SQL Script files (*.sql)|*.sql |All files (*.*)|*.*",
-        InitialDirectory = @"c:\temp", // for test
         Title = "Open SQL file"
       };
+
+      //openFileDialog.InitialDirectory = @"c:\temp";  // for test
+      openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments); // for prod
 
       if (openFileDialog.ShowDialog() == DialogResult.OK)
       {
         string openFileContent = string.Empty;
         try
         {
-          using (StreamReader sr = new StreamReader(openFileDialog.FileName))
+          using (StreamReader streamReader = new StreamReader(openFileDialog.FileName))
           {
-            openFileContent = sr.ReadToEnd();
+            openFileContent = streamReader.ReadToEnd();
           }
         }
         catch (Exception exception)
