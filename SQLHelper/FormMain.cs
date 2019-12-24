@@ -54,6 +54,9 @@ namespace SQLHelper
       outilsToolStripMenuItem.Enabled = false;
       personnaliserToolStripMenuItem.Enabled = false;
       optionsToolStripMenuItem.Enabled = false;
+      sommaireToolStripMenuItem.Enabled = false;
+      indexToolStripMenuItem.Enabled = false;
+      rechercherToolStripMenuItem.Enabled = false;
     }
 
     private void SaveWindowValue()
@@ -462,6 +465,12 @@ namespace SQLHelper
     {
       WindowsHelper.SelectAllItemsFromListBox(listBoxToDeploy, false);
       EnableDisableButtons();
+    }
+
+    private void ÀproposdeToolStripMenuItem_Click(object sender, EventArgs e)
+    {
+      AboutBoxApplication aboutBox = new AboutBoxApplication();
+      aboutBox.ShowDialog();
     }
   }
 }
