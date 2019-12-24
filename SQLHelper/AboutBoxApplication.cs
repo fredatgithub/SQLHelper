@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Linq;
+using System.IO;
 using System.Reflection;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SQLHelper
@@ -14,12 +10,12 @@ namespace SQLHelper
     public AboutBoxApplication()
     {
       InitializeComponent();
-      this.Text = String.Format("À propos de {0}", AssemblyTitle);
-      this.labelProductName.Text = AssemblyProduct;
-      this.labelVersion.Text = String.Format("Version {0}", AssemblyVersion);
-      this.labelCopyright.Text = AssemblyCopyright;
-      this.labelCompanyName.Text = AssemblyCompany;
-      this.textBoxDescription.Text = AssemblyDescription;
+      Text = string.Format("À propos de {0}", AssemblyTitle);
+      labelProductName.Text = AssemblyProduct;
+      labelVersion.Text = string.Format("Version {0}", AssemblyVersion);
+      labelCopyright.Text = AssemblyCopyright;
+      labelCompanyName.Text = AssemblyCompany;
+      textBoxDescription.Text = AssemblyDescription;
     }
 
     #region Accesseurs d'attribut de l'assembly
@@ -37,7 +33,8 @@ namespace SQLHelper
             return titleAttribute.Title;
           }
         }
-        return System.IO.Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().CodeBase);
+
+        return Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().CodeBase);
       }
     }
 
@@ -58,6 +55,7 @@ namespace SQLHelper
         {
           return "";
         }
+
         return ((AssemblyDescriptionAttribute)attributes[0]).Description;
       }
     }
@@ -71,6 +69,7 @@ namespace SQLHelper
         {
           return "";
         }
+
         return ((AssemblyProductAttribute)attributes[0]).Product;
       }
     }
@@ -84,6 +83,7 @@ namespace SQLHelper
         {
           return "";
         }
+
         return ((AssemblyCopyrightAttribute)attributes[0]).Copyright;
       }
     }
@@ -97,6 +97,7 @@ namespace SQLHelper
         {
           return "";
         }
+
         return ((AssemblyCompanyAttribute)attributes[0]).Company;
       }
     }
