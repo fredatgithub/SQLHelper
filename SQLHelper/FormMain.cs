@@ -28,17 +28,17 @@ namespace SQLHelper
       if (!File.Exists(serverListFileName))
       {
         // create the file serverList.txt if not exists
-        using (StreamWriter sw = new StreamWriter(serverListFileName))
+        using (StreamWriter streamWriter = new StreamWriter(serverListFileName))
         {
-          sw.WriteLine("server1");
+          streamWriter.WriteLine("server1");
         }
       }
 
-      using (StreamReader sr = new StreamReader(serverListFileName))
+      using (StreamReader streamReader = new StreamReader(serverListFileName))
       {
-        while (!sr.EndOfStream)
+        while (!streamReader.EndOfStream)
         {
-          string line = sr.ReadLine();
+          string line = streamReader.ReadLine();
           listBoxAvailable.Items.Add(line);
         }
 
@@ -363,8 +363,7 @@ namespace SQLHelper
         Title = "Save SQL file"
       };
 
-      //saveFileDialog.InitialDirectory = @"c:\temp";  // for test
-      saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments); //for prod
+      saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
       if (saveFileDialog.ShowDialog() == DialogResult.OK)
       {
@@ -395,8 +394,7 @@ namespace SQLHelper
         Title = "Open SQL file"
       };
 
-      //openFileDialog.InitialDirectory = @"c:\temp";  // for test
-      openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments); // for prod
+      openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
       if (openFileDialog.ShowDialog() == DialogResult.OK)
       {
