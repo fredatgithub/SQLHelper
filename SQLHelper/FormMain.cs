@@ -137,9 +137,12 @@ namespace SQLHelper
       {
         return;
       }
-
+      
       textBoxResult.Text = string.Empty;
-
+      progressBarMain.Minimum = 0;
+      int counter = 0;
+      progressBarMain.Value = progressBarMain.Minimum;
+      progressBarMain.Maximum = listBoxToDeploy.Items.Count;
       foreach (string serverName in listBoxToDeploy.Items)
       {
         textBoxResult.Text += $"-- Start of script for server: {serverName}";
@@ -149,7 +152,12 @@ namespace SQLHelper
         textBoxResult.Text += $"-- End of script for server: {serverName}";
         textBoxResult.Text += Environment.NewLine;
         textBoxResult.Text += Environment.NewLine;
+        progressBarMain.Value = counter;
+        counter++;
       }
+
+      progressBarMain.Value = progressBarMain.Minimum;
+      MessageBox.Show("The SQL script has been created.", "Done", MessageBoxButtons.OK);
     }
 
     private void FormMain_FormClosing(object sender, FormClosingEventArgs e)

@@ -83,6 +83,7 @@
       this.buttonDeploySelectAll = new System.Windows.Forms.Button();
       this.buttonDeployDelete = new System.Windows.Forms.Button();
       this.buttonDeployClear = new System.Windows.Forms.Button();
+      this.progressBarMain = new System.Windows.Forms.ProgressBar();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -158,11 +159,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.textBoxResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.textBoxResult.Location = new System.Drawing.Point(27, 292);
+      this.textBoxResult.Location = new System.Drawing.Point(27, 286);
       this.textBoxResult.Multiline = true;
       this.textBoxResult.Name = "textBoxResult";
       this.textBoxResult.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-      this.textBoxResult.Size = new System.Drawing.Size(1026, 206);
+      this.textBoxResult.Size = new System.Drawing.Size(1026, 246);
       this.textBoxResult.TabIndex = 6;
       this.textBoxResult.Text = "Script generated";
       this.textBoxResult.TextChanged += new System.EventHandler(this.TextBoxResult_TextChanged);
@@ -385,30 +386,30 @@
       // sommaireToolStripMenuItem
       // 
       this.sommaireToolStripMenuItem.Name = "sommaireToolStripMenuItem";
-      this.sommaireToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.sommaireToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
       this.sommaireToolStripMenuItem.Text = "&Sommaire";
       // 
       // indexToolStripMenuItem
       // 
       this.indexToolStripMenuItem.Name = "indexToolStripMenuItem";
-      this.indexToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.indexToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
       this.indexToolStripMenuItem.Text = "&Index";
       // 
       // rechercherToolStripMenuItem
       // 
       this.rechercherToolStripMenuItem.Name = "rechercherToolStripMenuItem";
-      this.rechercherToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.rechercherToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
       this.rechercherToolStripMenuItem.Text = "&Rechercher";
       // 
       // toolStripSeparator5
       // 
       this.toolStripSeparator5.Name = "toolStripSeparator5";
-      this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
+      this.toolStripSeparator5.Size = new System.Drawing.Size(144, 6);
       // 
       // àproposdeToolStripMenuItem
       // 
       this.àproposdeToolStripMenuItem.Name = "àproposdeToolStripMenuItem";
-      this.àproposdeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+      this.àproposdeToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
       this.àproposdeToolStripMenuItem.Text = "À &propos de...";
       this.àproposdeToolStripMenuItem.Click += new System.EventHandler(this.ÀproposdeToolStripMenuItem_Click);
       // 
@@ -579,11 +580,20 @@
       this.buttonDeployClear.UseVisualStyleBackColor = true;
       this.buttonDeployClear.Click += new System.EventHandler(this.ButtonDeployClear_Click);
       // 
+      // progressBarMain
+      // 
+      this.progressBarMain.Dock = System.Windows.Forms.DockStyle.Bottom;
+      this.progressBarMain.Location = new System.Drawing.Point(0, 553);
+      this.progressBarMain.Name = "progressBarMain";
+      this.progressBarMain.Size = new System.Drawing.Size(1065, 23);
+      this.progressBarMain.TabIndex = 25;
+      // 
       // FormMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(1065, 520);
+      this.ClientSize = new System.Drawing.Size(1065, 576);
+      this.Controls.Add(this.progressBarMain);
       this.Controls.Add(this.buttonDeployUnselectAll);
       this.Controls.Add(this.buttonDeploySelectAll);
       this.Controls.Add(this.buttonDeployDelete);
@@ -677,6 +687,7 @@
         private System.Windows.Forms.Button buttonDeploySelectAll;
         private System.Windows.Forms.Button buttonDeployDelete;
         private System.Windows.Forms.Button buttonDeployClear;
+        private System.Windows.Forms.ProgressBar progressBarMain;
     }
 }
 
