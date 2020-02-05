@@ -84,6 +84,8 @@
       this.buttonDeployDelete = new System.Windows.Forms.Button();
       this.buttonDeployClear = new System.Windows.Forms.Button();
       this.progressBarMain = new System.Windows.Forms.ProgressBar();
+      this.buttonClearResult = new System.Windows.Forms.Button();
+      this.buttonSaveToFile = new System.Windows.Forms.Button();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -145,7 +147,7 @@
       // 
       // buttonGenerate
       // 
-      this.buttonGenerate.Location = new System.Drawing.Point(27, 251);
+      this.buttonGenerate.Location = new System.Drawing.Point(124, 251);
       this.buttonGenerate.Name = "buttonGenerate";
       this.buttonGenerate.Size = new System.Drawing.Size(75, 23);
       this.buttonGenerate.TabIndex = 5;
@@ -474,7 +476,7 @@
       // 
       this.labelExplanation.AutoSize = true;
       this.labelExplanation.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.labelExplanation.Location = new System.Drawing.Point(128, 257);
+      this.labelExplanation.Location = new System.Drawing.Point(225, 257);
       this.labelExplanation.Name = "labelExplanation";
       this.labelExplanation.Size = new System.Drawing.Size(329, 13);
       this.labelExplanation.TabIndex = 14;
@@ -532,7 +534,7 @@
       // 
       // buttonCopyToClipBoard
       // 
-      this.buttonCopyToClipBoard.Location = new System.Drawing.Point(504, 251);
+      this.buttonCopyToClipBoard.Location = new System.Drawing.Point(601, 251);
       this.buttonCopyToClipBoard.Name = "buttonCopyToClipBoard";
       this.buttonCopyToClipBoard.Size = new System.Drawing.Size(125, 23);
       this.buttonCopyToClipBoard.TabIndex = 20;
@@ -588,11 +590,33 @@
       this.progressBarMain.Size = new System.Drawing.Size(1065, 23);
       this.progressBarMain.TabIndex = 25;
       // 
+      // buttonClearResult
+      // 
+      this.buttonClearResult.Location = new System.Drawing.Point(27, 251);
+      this.buttonClearResult.Name = "buttonClearResult";
+      this.buttonClearResult.Size = new System.Drawing.Size(75, 23);
+      this.buttonClearResult.TabIndex = 26;
+      this.buttonClearResult.Text = "Clear";
+      this.buttonClearResult.UseVisualStyleBackColor = true;
+      this.buttonClearResult.Click += new System.EventHandler(this.ButtonClearResult_Click);
+      // 
+      // buttonSaveToFile
+      // 
+      this.buttonSaveToFile.Location = new System.Drawing.Point(783, 252);
+      this.buttonSaveToFile.Name = "buttonSaveToFile";
+      this.buttonSaveToFile.Size = new System.Drawing.Size(125, 23);
+      this.buttonSaveToFile.TabIndex = 27;
+      this.buttonSaveToFile.Text = "Save to File";
+      this.buttonSaveToFile.UseVisualStyleBackColor = true;
+      this.buttonSaveToFile.Click += new System.EventHandler(this.ButtonSaveToFile_Click);
+      // 
       // FormMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(1065, 576);
+      this.Controls.Add(this.buttonSaveToFile);
+      this.Controls.Add(this.buttonClearResult);
       this.Controls.Add(this.progressBarMain);
       this.Controls.Add(this.buttonDeployUnselectAll);
       this.Controls.Add(this.buttonDeploySelectAll);
@@ -688,6 +712,8 @@
         private System.Windows.Forms.Button buttonDeployDelete;
         private System.Windows.Forms.Button buttonDeployClear;
         private System.Windows.Forms.ProgressBar progressBarMain;
+        private System.Windows.Forms.Button buttonClearResult;
+        private System.Windows.Forms.Button buttonSaveToFile;
     }
 }
 

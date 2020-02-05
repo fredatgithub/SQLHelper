@@ -137,8 +137,12 @@ namespace SQLHelper
       {
         return;
       }
-      
+
+      buttonGenerate.Enabled = false; 
       textBoxResult.Text = string.Empty;
+      textBoxResult.Text = "Please wait";
+      Application.DoEvents();
+
       progressBarMain.Minimum = 0;
       int counter = 0;
       progressBarMain.Value = progressBarMain.Minimum;
@@ -158,6 +162,7 @@ namespace SQLHelper
 
       progressBarMain.Value = progressBarMain.Minimum;
       MessageBox.Show("The SQL script has been created.", "Done", MessageBoxButtons.OK);
+      buttonGenerate.Enabled = true;
     }
 
     private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
@@ -328,6 +333,8 @@ namespace SQLHelper
     private void TextBoxResult_TextChanged(object sender, EventArgs e)
     {
       buttonCopyToClipBoard.Enabled = textBoxResult.Text != string.Empty;
+      buttonClearResult.Enabled = textBoxResult.Text != string.Empty;
+      buttonSaveToFile.Enabled = textBoxResult.Text != string.Empty;
     }
 
     private void EnableDisableButtons()
@@ -477,6 +484,16 @@ namespace SQLHelper
     {
       AboutBoxApplication aboutBox = new AboutBoxApplication();
       aboutBox.ShowDialog();
+    }
+
+    private void ButtonClearResult_Click(object sender, EventArgs e)
+    {
+      textBoxResult.Text = string.Empty;
+    }
+
+    private void ButtonSaveToFile_Click(object sender, EventArgs e)
+    {
+
     }
   }
 }
