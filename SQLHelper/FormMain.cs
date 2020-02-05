@@ -493,7 +493,23 @@ namespace SQLHelper
 
     private void ButtonSaveToFile_Click(object sender, EventArgs e)
     {
+      var fileContent = string.Empty;
+      var filePath = string.Empty;
 
+      using (SaveFileDialog sfd = new SaveFileDialog())
+      {
+        sfd.Filter = "SQL files (*.sql)|*.sql|Text files (*.txt)|*.txt|All files (*.*)|*.*";
+        sfd.FilterIndex = 0;
+        sfd.RestoreDirectory = true;
+        if (sfd.ShowDialog() == DialogResult.OK)
+        {
+          filePath = sfd.FileName;
+          using (StreamWriter writer = new StreamWriter(filePath))
+          {
+            writer.Write(textBoxResult.Text);
+          }
+        }
+      }
     }
   }
 }
