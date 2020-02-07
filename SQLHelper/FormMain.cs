@@ -140,13 +140,13 @@ namespace SQLHelper
 
       buttonGenerate.Enabled = false;
       textBoxResult.Text = string.Empty;
-      textBoxResult.Text = "Please wait";
+      textBoxResult.Text = "--Please wait";
       Application.DoEvents();
-
       progressBarMain.Minimum = 0;
       int counter = 0;
       progressBarMain.Value = progressBarMain.Minimum;
       progressBarMain.Maximum = listBoxToDeploy.Items.Count;
+      textBoxResult.Text = string.Empty;
       foreach (string serverName in listBoxToDeploy.Items)
       {
         textBoxResult.Text += $"-- Start of script for server: {serverName}";
