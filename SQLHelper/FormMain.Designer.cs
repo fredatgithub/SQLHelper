@@ -86,6 +86,7 @@
       this.progressBarMain = new System.Windows.Forms.ProgressBar();
       this.buttonClearResult = new System.Windows.Forms.Button();
       this.buttonSaveToFile = new System.Windows.Forms.Button();
+      this.checkBoxRemoveComments = new System.Windows.Forms.CheckBox();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -161,11 +162,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.textBoxResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.textBoxResult.Location = new System.Drawing.Point(27, 286);
+      this.textBoxResult.Location = new System.Drawing.Point(27, 313);
       this.textBoxResult.Multiline = true;
       this.textBoxResult.Name = "textBoxResult";
       this.textBoxResult.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-      this.textBoxResult.Size = new System.Drawing.Size(1026, 246);
+      this.textBoxResult.Size = new System.Drawing.Size(1026, 219);
       this.textBoxResult.TabIndex = 6;
       this.textBoxResult.Text = "Script generated";
       this.textBoxResult.TextChanged += new System.EventHandler(this.TextBoxResult_TextChanged);
@@ -610,11 +611,22 @@
       this.buttonSaveToFile.UseVisualStyleBackColor = true;
       this.buttonSaveToFile.Click += new System.EventHandler(this.ButtonSaveToFile_Click);
       // 
+      // checkBoxRemoveComments
+      // 
+      this.checkBoxRemoveComments.AutoSize = true;
+      this.checkBoxRemoveComments.Location = new System.Drawing.Point(27, 286);
+      this.checkBoxRemoveComments.Name = "checkBoxRemoveComments";
+      this.checkBoxRemoveComments.Size = new System.Drawing.Size(117, 17);
+      this.checkBoxRemoveComments.TabIndex = 28;
+      this.checkBoxRemoveComments.Text = "Remove comments";
+      this.checkBoxRemoveComments.UseVisualStyleBackColor = true;
+      // 
       // FormMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(1065, 576);
+      this.Controls.Add(this.checkBoxRemoveComments);
       this.Controls.Add(this.buttonSaveToFile);
       this.Controls.Add(this.buttonClearResult);
       this.Controls.Add(this.progressBarMain);
@@ -714,6 +726,7 @@
         private System.Windows.Forms.ProgressBar progressBarMain;
         private System.Windows.Forms.Button buttonClearResult;
         private System.Windows.Forms.Button buttonSaveToFile;
+        private System.Windows.Forms.CheckBox checkBoxRemoveComments;
     }
 }
 

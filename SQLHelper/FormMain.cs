@@ -39,7 +39,10 @@ namespace SQLHelper
         while (!streamReader.EndOfStream)
         {
           string line = streamReader.ReadLine();
-          listBoxAvailable.Items.Add(line);
+          if (line.Trim() != string.Empty)
+          {
+            listBoxAvailable.Items.Add(line);
+          }
         }
 
         labelCountAvailable.Text = $"Count: {listBoxAvailable.Items.Count}";
@@ -149,13 +152,22 @@ namespace SQLHelper
       textBoxResult.Text = string.Empty;
       foreach (string serverName in listBoxToDeploy.Items)
       {
-        textBoxResult.Text += $"-- Start of script for server: {serverName}";
-        textBoxResult.Text += Environment.NewLine;
+        if (!checkBoxRemoveComments.Checked)
+        {
+          textBoxResult.Text += $"-- Start of script for server: {serverName}";
+          textBoxResult.Text += Environment.NewLine;
+        }
+
         textBoxResult.Text += textBoxSource.Text.Replace("%%ServerName%%", serverName);
         textBoxResult.Text += Environment.NewLine;
-        textBoxResult.Text += $"-- End of script for server: {serverName}";
-        textBoxResult.Text += Environment.NewLine;
-        textBoxResult.Text += Environment.NewLine;
+
+        if (!checkBoxRemoveComments.Checked)
+        {
+          textBoxResult.Text += $"-- End of script for server: {serverName}";
+          textBoxResult.Text += Environment.NewLine;
+          textBoxResult.Text += Environment.NewLine;
+        }
+
         progressBarMain.Value = counter;
         counter++;
       }
