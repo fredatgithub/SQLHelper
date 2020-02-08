@@ -31,6 +31,7 @@ namespace SQLHelper
         using (StreamWriter streamWriter = new StreamWriter(serverListFileName))
         {
           streamWriter.WriteLine("server1");
+          streamWriter.WriteLine("server2");
         }
       }
 
