@@ -99,7 +99,6 @@
       this.textBoxSource.ScrollBars = System.Windows.Forms.ScrollBars.Both;
       this.textBoxSource.Size = new System.Drawing.Size(353, 165);
       this.textBoxSource.TabIndex = 0;
-      this.textBoxSource.Text = "use %%ServerName%%\r\ngo\r\n\r\nselect * from %%ServerName%%.dbo.tableName\r\n";
       this.textBoxSource.TextChanged += new System.EventHandler(this.TextBoxSource_TextChanged);
       // 
       // listBoxToDeploy

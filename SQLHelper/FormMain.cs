@@ -22,6 +22,12 @@ namespace SQLHelper
       Application.Exit();
     }
 
+    private void SaveWindowsProperties()
+    {
+      Settings.Default.textBoxSource = textBoxSource.Text;
+      Settings.Default.Save();
+    }
+
     private void FormMain_Load(object sender, EventArgs e)
     {
       string serverListFileName = "serverList.txt";
@@ -33,6 +39,8 @@ namespace SQLHelper
           streamWriter.WriteLine("server1");
           streamWriter.WriteLine("server2");
         }
+
+        textBoxSource.Text = Settings.Default.textBoxSource;
       }
 
       using (StreamReader streamReader = new StreamReader(serverListFileName))
@@ -70,6 +78,7 @@ namespace SQLHelper
       Settings.Default.WindowLeft = Left;
       Settings.Default.WindowTop = Top;
       Settings.Default.textBoxAvailable = textBoxAvailable.Text;
+      Settings.Default.textBoxSource = textBoxSource.Text;
       Settings.Default.Save();
     }
 
@@ -80,6 +89,7 @@ namespace SQLHelper
       Top = Settings.Default.WindowTop < 0 ? 0 : Settings.Default.WindowTop;
       Left = Settings.Default.WindowLeft < 0 ? 0 : Settings.Default.WindowLeft;
       textBoxAvailable.Text = Settings.Default.textBoxAvailable;
+      textBoxSource.Text = Settings.Default.textBoxSource;
     }
 
     private void DisplayTitle()

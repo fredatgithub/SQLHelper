@@ -17,5 +17,12 @@
     <Setting Name="textBoxAvailable" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="textBoxSource" Type="System.String" Scope="User">
+      <Value Profile="(Default)">use %%ServerName%%
+go
+
+select * from %%ServerName%%.dbo.tableName
+</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

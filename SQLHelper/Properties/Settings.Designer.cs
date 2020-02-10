@@ -82,5 +82,17 @@ namespace SQLHelper.Properties {
                 this["textBoxAvailable"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("use %%ServerName%%\r\ngo\r\n\r\nselect * from %%ServerName%%.dbo.tableName\r\n")]
+        public string textBoxSource {
+            get {
+                return ((string)(this["textBoxSource"]));
+            }
+            set {
+                this["textBoxSource"] = value;
+            }
+        }
     }
 }
