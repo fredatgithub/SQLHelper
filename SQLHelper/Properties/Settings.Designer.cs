@@ -94,5 +94,17 @@ namespace SQLHelper.Properties {
                 this["textBoxSource"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool checkBoxRemoveComments {
+            get {
+                return ((bool)(this["checkBoxRemoveComments"]));
+            }
+            set {
+                this["checkBoxRemoveComments"] = value;
+            }
+        }
     }
 }

@@ -24,5 +24,8 @@ go
 select * from %%ServerName%%.dbo.tableName
 </Value>
     </Setting>
+    <Setting Name="checkBoxRemoveComments" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -79,6 +79,7 @@ namespace SQLHelper
       Settings.Default.WindowTop = Top;
       Settings.Default.textBoxAvailable = textBoxAvailable.Text;
       Settings.Default.textBoxSource = textBoxSource.Text;
+      Settings.Default.checkBoxRemoveComments = checkBoxRemoveComments.Checked;
       Settings.Default.Save();
     }
 
@@ -90,6 +91,7 @@ namespace SQLHelper
       Left = Settings.Default.WindowLeft < 0 ? 0 : Settings.Default.WindowLeft;
       textBoxAvailable.Text = Settings.Default.textBoxAvailable;
       textBoxSource.Text = Settings.Default.textBoxSource;
+      checkBoxRemoveComments.Checked = Settings.Default.checkBoxRemoveComments;
     }
 
     private void DisplayTitle()
