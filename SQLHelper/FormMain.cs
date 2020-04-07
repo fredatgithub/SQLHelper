@@ -30,6 +30,23 @@ namespace SQLHelper
 
     private void FormMain_Load(object sender, EventArgs e)
     {
+      LoadServerList();
+      DisplayTitle();
+      GetWindowValue();
+      EnableDisableButtons();
+      // disable not implemented menu items:
+      annulerToolStripMenuItem.Enabled = false;
+      rétablirToolStripMenuItem.Enabled = false;
+      outilsToolStripMenuItem.Enabled = false;
+      personnaliserToolStripMenuItem.Enabled = false;
+      optionsToolStripMenuItem.Enabled = false;
+      sommaireToolStripMenuItem.Enabled = false;
+      indexToolStripMenuItem.Enabled = false;
+      rechercherToolStripMenuItem.Enabled = false;
+    }
+
+    private void LoadServerList()
+    {
       string serverListFileName = "serverList.txt";
       if (!File.Exists(serverListFileName))
       {
@@ -56,23 +73,11 @@ namespace SQLHelper
 
         labelCountAvailable.Text = $"Count: {listBoxAvailable.Items.Count}";
       }
-
-      DisplayTitle();
-      GetWindowValue();
-      EnableDisableButtons();
-      // disable not implemented menu items:
-      annulerToolStripMenuItem.Enabled = false;
-      rétablirToolStripMenuItem.Enabled = false;
-      outilsToolStripMenuItem.Enabled = false;
-      personnaliserToolStripMenuItem.Enabled = false;
-      optionsToolStripMenuItem.Enabled = false;
-      sommaireToolStripMenuItem.Enabled = false;
-      indexToolStripMenuItem.Enabled = false;
-      rechercherToolStripMenuItem.Enabled = false;
     }
 
     private void SaveWindowValue()
     {
+      Settings.Default.WindowHeight = Height;
       Settings.Default.WindowHeight = Height;
       Settings.Default.WindowWidth = Width;
       Settings.Default.WindowLeft = Left;
@@ -532,6 +537,13 @@ namespace SQLHelper
           }
         }
       }
+    }
+
+    private void ButtonReloadFile_Click(object sender, EventArgs e)
+    {
+      listBoxAvailable.Items.Clear();
+      LoadServerList();
+      buttonClear.Enabled = true;
     }
   }
 }

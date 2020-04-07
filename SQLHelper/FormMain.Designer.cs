@@ -87,6 +87,7 @@
       this.buttonClearResult = new System.Windows.Forms.Button();
       this.buttonSaveToFile = new System.Windows.Forms.Button();
       this.checkBoxRemoveComments = new System.Windows.Forms.CheckBox();
+      this.buttonReloadFile = new System.Windows.Forms.Button();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -620,11 +621,22 @@
       this.checkBoxRemoveComments.Text = "Remove comments";
       this.checkBoxRemoveComments.UseVisualStyleBackColor = true;
       // 
+      // buttonReloadFile
+      // 
+      this.buttonReloadFile.Location = new System.Drawing.Point(961, 205);
+      this.buttonReloadFile.Name = "buttonReloadFile";
+      this.buttonReloadFile.Size = new System.Drawing.Size(75, 23);
+      this.buttonReloadFile.TabIndex = 29;
+      this.buttonReloadFile.Text = "Reload File";
+      this.buttonReloadFile.UseVisualStyleBackColor = true;
+      this.buttonReloadFile.Click += new System.EventHandler(this.ButtonReloadFile_Click);
+      // 
       // FormMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(1065, 576);
+      this.Controls.Add(this.buttonReloadFile);
       this.Controls.Add(this.checkBoxRemoveComments);
       this.Controls.Add(this.buttonSaveToFile);
       this.Controls.Add(this.buttonClearResult);
@@ -726,6 +738,7 @@
         private System.Windows.Forms.Button buttonClearResult;
         private System.Windows.Forms.Button buttonSaveToFile;
         private System.Windows.Forms.CheckBox checkBoxRemoveComments;
+        private System.Windows.Forms.Button buttonReloadFile;
     }
 }
 
