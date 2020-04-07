@@ -22,14 +22,14 @@ namespace SQLHelper
       Application.Exit();
     }
 
-    private void SaveWindowsProperties()
-    {
-      Settings.Default.textBoxSource = textBoxSource.Text;
-      Settings.Default.Save();
-    }
-
     private void FormMain_Load(object sender, EventArgs e)
     {
+      if (!File.Exists("LibraryHelper.dll"))
+      {
+        MessageBox.Show("The file LibraryHelper.dll has not been found so this application cannot work");
+        Application.Exit();
+      }
+
       LoadServerList();
       DisplayTitle();
       GetWindowValue();
@@ -544,6 +544,7 @@ namespace SQLHelper
       listBoxAvailable.Items.Clear();
       LoadServerList();
       buttonClear.Enabled = true;
+      buttonSelectAll.Enabled = true;
     }
   }
 }
