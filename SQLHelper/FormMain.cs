@@ -17,6 +17,10 @@ namespace SQLHelper
       InitializeComponent();
     }
 
+    bool addGoAtTheEndOfScript = false;
+    bool removeEmptyLine = false;
+    bool disablePopUp = false;
+
     private void QuitterToolStripMenuItem_Click(object sender, EventArgs e)
     {
       Application.Exit();
@@ -85,6 +89,9 @@ namespace SQLHelper
       Settings.Default.textBoxAvailable = textBoxAvailable.Text;
       Settings.Default.textBoxSource = textBoxSource.Text;
       Settings.Default.checkBoxRemoveComments = checkBoxRemoveComments.Checked;
+      Settings.Default.checkBoxAddGo = checkBoxAddGo.Checked;
+      Settings.Default.checkBoxRemoveEmptyLine = checkBoxRemoveEmptyLine.Checked;
+      Settings.Default.checkBoxDisablePopUp = checkBoxDisablePopUp.Checked;
       Settings.Default.Save();
     }
 
@@ -97,6 +104,9 @@ namespace SQLHelper
       textBoxAvailable.Text = Settings.Default.textBoxAvailable;
       textBoxSource.Text = Settings.Default.textBoxSource;
       checkBoxRemoveComments.Checked = Settings.Default.checkBoxRemoveComments;
+      checkBoxAddGo.Checked = Settings.Default.checkBoxAddGo;
+      checkBoxRemoveEmptyLine.Checked = Settings.Default.checkBoxRemoveEmptyLine;
+      checkBoxDisablePopUp.Checked = Settings.Default.checkBoxDisablePopUp;
     }
 
     private void DisplayTitle()
@@ -176,22 +186,39 @@ namespace SQLHelper
           textBoxResult.Text += Environment.NewLine;
         }
 
-        textBoxResult.Text += textBoxSource.Text.Replace("%%ServerName%%", serverName);
+        string transformedText = textBoxSource.Text.Replace("%%ServerName%%", serverName);
+
+        if (removeEmptyLine)
+        {
+          var array = transformedText.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+          transformedText = string.Join(" ", array);
+        }
+
+        textBoxResult.Text += transformedText;
         textBoxResult.Text += Environment.NewLine;
 
         if (!checkBoxRemoveComments.Checked)
         {
           textBoxResult.Text += $"-- End of script for server: {serverName}";
           textBoxResult.Text += Environment.NewLine;
-          textBoxResult.Text += Environment.NewLine;
         }
 
+        if (addGoAtTheEndOfScript)
+        {
+          textBoxResult.Text += Environment.NewLine;
+          textBoxResult.Text += "GO";
+          textBoxResult.Text += Environment.NewLine;
+        }
         progressBarMain.Value = counter;
         counter++;
       }
 
       progressBarMain.Value = progressBarMain.Minimum;
-      MessageBox.Show("The SQL script has been created.", "Done", MessageBoxButtons.OK);
+      if (!disablePopUp)
+      {
+        MessageBox.Show("The SQL script has been created.", "Done", MessageBoxButtons.OK);
+      }
+
       buttonGenerate.Enabled = true;
     }
 
@@ -215,7 +242,10 @@ namespace SQLHelper
     private void ButtonCopyToClipBoard_Click(object sender, EventArgs e)
     {
       Clipboard.SetText(textBoxResult.Text);
-      MessageBox.Show("Script SQL has been copied to the clipboard", "copied", MessageBoxButtons.OK);
+      if (!disablePopUp)
+      {
+        MessageBox.Show("Script SQL has been copied to the clipboard", "copied", MessageBoxButtons.OK);
+      }
     }
 
     private void CouperToolStripMenuItem_Click(object sender, EventArgs e)
@@ -545,6 +575,26 @@ namespace SQLHelper
       LoadServerList();
       buttonClear.Enabled = true;
       buttonSelectAll.Enabled = true;
+    }
+
+    private void CheckBoxAddGo_CheckedChanged(object sender, EventArgs e)
+    {
+      addGoAtTheEndOfScript = checkBoxAddGo.Checked;
+    }
+
+    private void CheckBoxRemoveEmptyLine_CheckedChanged(object sender, EventArgs e)
+    {
+      removeEmptyLine = checkBoxRemoveEmptyLine.Checked;
+    }
+
+    private void CheckBoxDisablePopUp_CheckedChanged(object sender, EventArgs e)
+    {
+      disablePopUp = checkBoxDisablePopUp.Checked;
+    }
+
+    private void CheckBoxRemoveComments_CheckedChanged(object sender, EventArgs e)
+    {
+      disablePopUp = checkBoxDisablePopUp.Checked;
     }
   }
 }

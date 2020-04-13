@@ -88,6 +88,9 @@
       this.buttonSaveToFile = new System.Windows.Forms.Button();
       this.checkBoxRemoveComments = new System.Windows.Forms.CheckBox();
       this.buttonReloadFile = new System.Windows.Forms.Button();
+      this.checkBoxAddGo = new System.Windows.Forms.CheckBox();
+      this.checkBoxRemoveEmptyLine = new System.Windows.Forms.CheckBox();
+      this.checkBoxDisablePopUp = new System.Windows.Forms.CheckBox();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -173,6 +176,7 @@
       // 
       // menuStrip1
       // 
+      this.menuStrip1.BackColor = System.Drawing.SystemColors.InactiveCaption;
       this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fichierToolStripMenuItem,
             this.editionToolStripMenuItem,
@@ -620,6 +624,7 @@
       this.checkBoxRemoveComments.TabIndex = 28;
       this.checkBoxRemoveComments.Text = "Remove comments";
       this.checkBoxRemoveComments.UseVisualStyleBackColor = true;
+      this.checkBoxRemoveComments.CheckedChanged += new System.EventHandler(this.CheckBoxRemoveComments_CheckedChanged);
       // 
       // buttonReloadFile
       // 
@@ -631,11 +636,48 @@
       this.buttonReloadFile.UseVisualStyleBackColor = true;
       this.buttonReloadFile.Click += new System.EventHandler(this.ButtonReloadFile_Click);
       // 
+      // checkBoxAddGo
+      // 
+      this.checkBoxAddGo.AutoSize = true;
+      this.checkBoxAddGo.Location = new System.Drawing.Point(150, 286);
+      this.checkBoxAddGo.Name = "checkBoxAddGo";
+      this.checkBoxAddGo.Size = new System.Drawing.Size(115, 17);
+      this.checkBoxAddGo.TabIndex = 30;
+      this.checkBoxAddGo.Text = "Add GO at the end";
+      this.checkBoxAddGo.UseVisualStyleBackColor = true;
+      this.checkBoxAddGo.CheckedChanged += new System.EventHandler(this.CheckBoxAddGo_CheckedChanged);
+      // 
+      // checkBoxRemoveEmptyLine
+      // 
+      this.checkBoxRemoveEmptyLine.AutoSize = true;
+      this.checkBoxRemoveEmptyLine.Location = new System.Drawing.Point(271, 286);
+      this.checkBoxRemoveEmptyLine.Name = "checkBoxRemoveEmptyLine";
+      this.checkBoxRemoveEmptyLine.Size = new System.Drawing.Size(121, 17);
+      this.checkBoxRemoveEmptyLine.TabIndex = 31;
+      this.checkBoxRemoveEmptyLine.Text = "Remove Empty Line";
+      this.checkBoxRemoveEmptyLine.UseVisualStyleBackColor = true;
+      this.checkBoxRemoveEmptyLine.CheckedChanged += new System.EventHandler(this.CheckBoxRemoveEmptyLine_CheckedChanged);
+      // 
+      // checkBoxDisablePopUp
+      // 
+      this.checkBoxDisablePopUp.AutoSize = true;
+      this.checkBoxDisablePopUp.Location = new System.Drawing.Point(398, 286);
+      this.checkBoxDisablePopUp.Name = "checkBoxDisablePopUp";
+      this.checkBoxDisablePopUp.Size = new System.Drawing.Size(98, 17);
+      this.checkBoxDisablePopUp.TabIndex = 32;
+      this.checkBoxDisablePopUp.Text = "Disable Pop-up";
+      this.checkBoxDisablePopUp.UseVisualStyleBackColor = true;
+      this.checkBoxDisablePopUp.CheckedChanged += new System.EventHandler(this.CheckBoxDisablePopUp_CheckedChanged);
+      // 
       // FormMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.BackColor = System.Drawing.SystemColors.ActiveCaption;
       this.ClientSize = new System.Drawing.Size(1065, 576);
+      this.Controls.Add(this.checkBoxDisablePopUp);
+      this.Controls.Add(this.checkBoxRemoveEmptyLine);
+      this.Controls.Add(this.checkBoxAddGo);
       this.Controls.Add(this.buttonReloadFile);
       this.Controls.Add(this.checkBoxRemoveComments);
       this.Controls.Add(this.buttonSaveToFile);
@@ -739,6 +781,9 @@
         private System.Windows.Forms.Button buttonSaveToFile;
         private System.Windows.Forms.CheckBox checkBoxRemoveComments;
         private System.Windows.Forms.Button buttonReloadFile;
+        private System.Windows.Forms.CheckBox checkBoxAddGo;
+        private System.Windows.Forms.CheckBox checkBoxRemoveEmptyLine;
+        private System.Windows.Forms.CheckBox checkBoxDisablePopUp;
     }
 }
 
