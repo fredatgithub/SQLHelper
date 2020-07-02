@@ -35,6 +35,7 @@ namespace SQLHelper
       }
 
       LoadServerList();
+      LoadComboBoxTemplate();
       DisplayTitle();
       GetWindowValue();
       EnableDisableButtons();
@@ -47,6 +48,12 @@ namespace SQLHelper
       sommaireToolStripMenuItem.Enabled = false;
       indexToolStripMenuItem.Enabled = false;
       rechercherToolStripMenuItem.Enabled = false;
+    }
+
+    private void LoadComboBoxTemplate()
+    {
+      comboBoxDbNameTemplate.Items.Clear();
+      comboBoxDbNameTemplate.Items.Add("use %%ServerName%%\r\nGO\r\nselect '%%ServerName%%' as 'database', *from");
     }
 
     private void LoadServerList()
@@ -595,6 +602,11 @@ namespace SQLHelper
     private void CheckBoxRemoveComments_CheckedChanged(object sender, EventArgs e)
     {
       disablePopUp = checkBoxDisablePopUp.Checked;
+    }
+
+    private void ComboBoxDbNameTemplate_SelectedIndexChanged(object sender, EventArgs e)
+    {
+      textBoxSource.Text = comboBoxDbNameTemplate.SelectedItem.ToString();
     }
   }
 }

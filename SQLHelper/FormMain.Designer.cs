@@ -91,17 +91,19 @@
       this.checkBoxAddGo = new System.Windows.Forms.CheckBox();
       this.checkBoxRemoveEmptyLine = new System.Windows.Forms.CheckBox();
       this.checkBoxDisablePopUp = new System.Windows.Forms.CheckBox();
+      this.labelAddDBNameTemplate = new System.Windows.Forms.Label();
+      this.comboBoxDbNameTemplate = new System.Windows.Forms.ComboBox();
       this.menuStrip1.SuspendLayout();
       this.SuspendLayout();
       // 
       // textBoxSource
       // 
       this.textBoxSource.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.textBoxSource.Location = new System.Drawing.Point(27, 63);
+      this.textBoxSource.Location = new System.Drawing.Point(27, 92);
       this.textBoxSource.Multiline = true;
       this.textBoxSource.Name = "textBoxSource";
       this.textBoxSource.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-      this.textBoxSource.Size = new System.Drawing.Size(353, 165);
+      this.textBoxSource.Size = new System.Drawing.Size(353, 136);
       this.textBoxSource.TabIndex = 0;
       this.textBoxSource.TextChanged += new System.EventHandler(this.TextBoxSource_TextChanged);
       // 
@@ -669,12 +671,33 @@
       this.checkBoxDisablePopUp.UseVisualStyleBackColor = true;
       this.checkBoxDisablePopUp.CheckedChanged += new System.EventHandler(this.CheckBoxDisablePopUp_CheckedChanged);
       // 
+      // labelAddDBNameTemplate
+      // 
+      this.labelAddDBNameTemplate.AutoSize = true;
+      this.labelAddDBNameTemplate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.labelAddDBNameTemplate.Location = new System.Drawing.Point(24, 63);
+      this.labelAddDBNameTemplate.Name = "labelAddDBNameTemplate";
+      this.labelAddDBNameTemplate.Size = new System.Drawing.Size(175, 13);
+      this.labelAddDBNameTemplate.TabIndex = 33;
+      this.labelAddDBNameTemplate.Text = "Add Database Name template";
+      // 
+      // comboBoxDbNameTemplate
+      // 
+      this.comboBoxDbNameTemplate.FormattingEnabled = true;
+      this.comboBoxDbNameTemplate.Location = new System.Drawing.Point(214, 59);
+      this.comboBoxDbNameTemplate.Name = "comboBoxDbNameTemplate";
+      this.comboBoxDbNameTemplate.Size = new System.Drawing.Size(166, 21);
+      this.comboBoxDbNameTemplate.TabIndex = 34;
+      this.comboBoxDbNameTemplate.SelectedIndexChanged += new System.EventHandler(this.ComboBoxDbNameTemplate_SelectedIndexChanged);
+      // 
       // FormMain
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.SystemColors.ActiveCaption;
       this.ClientSize = new System.Drawing.Size(1065, 576);
+      this.Controls.Add(this.comboBoxDbNameTemplate);
+      this.Controls.Add(this.labelAddDBNameTemplate);
       this.Controls.Add(this.checkBoxDisablePopUp);
       this.Controls.Add(this.checkBoxRemoveEmptyLine);
       this.Controls.Add(this.checkBoxAddGo);
@@ -784,6 +807,8 @@
         private System.Windows.Forms.CheckBox checkBoxAddGo;
         private System.Windows.Forms.CheckBox checkBoxRemoveEmptyLine;
         private System.Windows.Forms.CheckBox checkBoxDisablePopUp;
-    }
+    private System.Windows.Forms.Label labelAddDBNameTemplate;
+    private System.Windows.Forms.ComboBox comboBoxDbNameTemplate;
+  }
 }
 
